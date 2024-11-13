@@ -54,3 +54,8 @@ To install these dotfiles on your system, you can clone the repository and symli
 ## Customizing
 
 Feel free to modify the configurations to fit your needs. Each file is modular and can be edited independently.
+
+## Connect with Me!
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230A66C2.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/derek-corniello)
+[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/derekcorniello)
+[![X](https://img.shields.io/badge/X-%231DA1F2.svg?style=for-the-badge&logo=x&logoColor=white)](https://x.com/derekcorniello)
