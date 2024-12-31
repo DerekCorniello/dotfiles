@@ -3,3 +3,5 @@
 	name = Derek Corniello
 [init]
 	defaultBranch = main
+[core]
+	editor = nvim
