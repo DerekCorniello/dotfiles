@@ -1,7 +1,4 @@
 ![Neovim](https://img.shields.io/badge/neovim-%2357A143.svg?style=for-the-badge&logo=neovim&logoColor=white)
-![Last Commit](https://img.shields.io/github/last-commit/DerekCorniello/NeoVim-Setup?style=for-the-badge)
-
-**NOTE** This repository has been archived and will now be maintained in ![my dotfiles](https://github.com/DerekCorniello/dotfiles). Please refer there for future updates!
 
 # Neovim Setup Documentation
 
