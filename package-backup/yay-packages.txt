@@ -1,0 +1,11 @@
+aurutils
+checkupdates-with-aur
+getnf
+hyprshot
+libnm-iwd
+nerdfetch
+networkmanager-iwd-debug
+yay
+yay-debug
+zsh-theme-powerlevel10k-git
+zsh-theme-powerlevel10k-git-debug
