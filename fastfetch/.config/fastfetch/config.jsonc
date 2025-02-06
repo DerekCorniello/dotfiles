@@ -47,10 +47,12 @@
             "type": "wm"
         },
         {
+            "type": "command",
             "key": "{$1}Packages",
-            "keyColor": "red", 
+            "text": "pac=$(pacman -Qqe | wc -l); yay=$(yay -Qqm | wc -l); fp=$(flatpak list --columns=application | wc -l); printf \"pacman: %s | yay: %s | flatpak: %s\" \"$pac\" \"$yay\" \"$fp\"",
+            "keyColor": "red",
             "keyWidth": 20,
-            "type": "packages"
+            "format": "{}"
         },
         {
             "key": "{$1}Font",
