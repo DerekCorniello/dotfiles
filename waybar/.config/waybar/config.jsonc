@@ -7,14 +7,15 @@
         "hyprland/window"
     ],
     "modules-right": [
+        "custom/pacman",
         "network",
+        "bluetooth",
         "pulseaudio",
         "battery",
         "clock"
     ],
     "clock": {
-        "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %a %m/%d/%Y}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}"
     },
     "battery": {
         "states": {
@@ -38,11 +39,33 @@
         "tooltip-format": "{time}"
     },
     "network": {
-        "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span> Connected",
-        "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
+        "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>",
+        "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰈀 </span>",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-        "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
+        "format-disconnected": "<span size='13000' foreground='#f5e0dc'>󰤭 </span>",
+        "tooltip-format-wifi": "{essid} - {signalStrength}%",
+        "on-click": "nm-connection-editor"
+    },
+    "bluetooth": {
+        "format-on": "<span size='13000' foreground='#89dceb'>󰂯</span>",
+        "format-off": "<span size='13000' foreground='#f38ba8'>󰂲</span>",
+        "format-disabled": "<span size='13000' foreground='#f38ba8'>󰂲</span>",
+        "format-connected": "<span size='13000' foreground='#89dceb'>󰂯</span>{num_connections}",
+        "format-connected-battery": "<span size='13000' foreground='#89dceb'>󰂯</span>{device_battery_percentage}%",
+        "tooltip-format": "{controller_alias} ({controller_address})\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias} ({controller_address})\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias} ({device_address})",
+        "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_address}) - {device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+    "custom/pacman": {
+        "format": "<span size='13000' foreground='#fab387'>󰅢 </span>{}",
+        "interval": 600,
+        "exec": "checkupdates | wc -l",
+        "exec-if": "exit 0",
+        "on-click": "kitty sh -c 'yay; sudo pacman -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        "signal": 8,
+        "tooltip": false
     },
     "pulseaudio": {
         "format": "{icon}  {volume}%",

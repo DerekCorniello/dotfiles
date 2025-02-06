@@ -54,6 +54,8 @@ button:hover {
     background-color: #eb4d4b;
 }
 
+#bluetooth,
+#custom-pacman,
 #pulseaudio,
 #clock,
 #battery,
@@ -93,6 +95,16 @@ button:hover {
 #network {
     color: @white;
     border-bottom: 2px solid @white;
+}
+
+#bluetooth {
+    color: #89dceb;
+    border-bottom: 2px solid #89dceb;
+}
+
+#custom-pacman {
+    color: #fab387;
+    border-bottom: 2px solid #fab387;
 }
 
 #idle_inhibitor {
