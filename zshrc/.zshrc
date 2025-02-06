@@ -7,7 +7,8 @@ check_directory_for_new_repository() {
  
  if [ "$current_repository" ] && \
     [ "$current_repository" != "$last_repository" ]; then
-     onefetch --include-hidden
+        echo ""
+        onefetch --include-hidden
  fi
  last_repository=$current_repository
 }
