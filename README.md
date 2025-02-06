@@ -6,14 +6,16 @@
 This repository contains my personal dotfiles and configurations for a customized Arch Linux setup. These files are intended to help me set up my development environment quickly and easily.
 
 ## Included Configurations
+- [**`gitconfig`**](https://git-scm.com/docs/git-config): Configuration for Git, including my preferred aliases and settings.  
+- [**`hypr`**](https://github.com/hyprwm/Hyprland): Configuration for the Hyprland Wayland compositor.  
+- [**`kitty`**](https://github.com/kovidgoyal/kitty): Configuration for the Kitty terminal UI.  
+- [**`nvim`**](https://github.com/neovim/neovim): Neovim configuration with my plugin setup and custom keybindings.  
+- [**`tmux`**](https://github.com/tmux/tmux): Configuration for tmux with my preferred panes, windows, and keybindings.  
+- [**`waybar`**](github.com/Alexays/Waybar): Configuration for Waybar to display system information on my Wayland desktop.  
+- [**`zshrc`**](https://github.com/ohmyzsh/ohmyzsh): Zsh configuration with Oh My Zsh and my preferred plugins and themes.
+- **[`fastfetch`](https://github.com/fastfetch-cli/fastfetch) and [`onefetch`](https://github.com/o2sh/onefetch)**(#fastfetch-onefetch): Contains data fetching for the OS and for git configurations.  
+- **`package-backup`**: Contains all of the packages from pacman, yay, and flatpak that are in the OS.
 
-- **`gitconfig`**: Configuration for Git, including my preferred aliases and settings.
-- **`hypr`**: Configuration for the Hyprland Wayland compositor.
-- **`kitty`**: Configuration for the Kitty terminal UI.
-- **`nvim`**: Neovim configuration with my plugin setup and custom keybindings (also check out [my NeoVim setup](https://www.github.com/DerekCorniello/NeoVim-Setup).
-- **`tmux`**: Configuration for tmux with my preferred panes, windows, and keybindings.
-- **`waybar`**: Configuration for Waybar to display system information on my Wayland desktop.
-- **`zshrc`**: Zsh configuration with Oh My Zsh and my preferred plugins and themes.
 
 ## Installation
 
