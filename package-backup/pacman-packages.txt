@@ -5,6 +5,7 @@ bind
 blueman
 bluez-utils
 brightnessctl
+btop
 btrfs-progs
 checkupdates-with-aur
 discord
@@ -69,6 +70,7 @@ hyprlock
 hyprpaper
 hyprshot
 intel-ucode
+kali-themes
 kitty
 libpulse
 linux
@@ -83,10 +85,12 @@ network-manager-applet
 networkmanager
 nodejs
 npm
+nvidia
 nwg-look
 onefetch
 orca
 otf-codenewroman-nerd
+papirus-icon-theme
 pavucontrol
 pipewire
 pipewire-alsa
@@ -106,6 +110,7 @@ sushi
 swaybg
 swaync
 tecla
+thunar
 tmux
 totem
 ttf-0xproto-nerd
