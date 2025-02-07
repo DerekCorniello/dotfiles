@@ -1,4 +1,3 @@
-app.zen_browser.zen
 com.getpostman.Postman
 com.obsproject.Studio
 org.freedesktop.Platform
@@ -6,6 +5,7 @@ org.freedesktop.Platform.GL.default
 org.freedesktop.Platform.GL.default
 org.freedesktop.Platform.GL.default
 org.freedesktop.Platform.GL.default
+org.freedesktop.Platform.GL.nvidia-570-86-16
 org.freedesktop.Platform.VAAPI.Intel
 org.freedesktop.Platform.VAAPI.Intel
 org.freedesktop.Platform.ffmpeg-full

@@ -8,5 +8,6 @@ nerdfetch
 networkmanager-iwd-debug
 yay
 yay-debug
+zen-browser-bin
 zsh-theme-powerlevel10k-git
 zsh-theme-powerlevel10k-git-debug
