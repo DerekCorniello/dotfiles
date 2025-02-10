@@ -13,7 +13,7 @@ window#waybar {
     color: @overlay0;
     transition-property: background-color;
     transition-duration: 0.1s;
-    border-bottom: 1px solid @overlay1;
+    border-bottom: 2px solid @overlay1;
 }
 
 #window {
@@ -23,9 +23,9 @@ window#waybar {
 }
 
 button {
-    box-shadow: inset 0 -3px transparent;
     border: none;
     border-radius: 0;
+    margin-bottom: 2px;
 }
 
 button:hover {
@@ -36,6 +36,8 @@ button:hover {
 
 #workspaces button {
     padding: 0 4px;
+    border-top: 2px solid transparent;
+    color: #c9c9c9;
 }
 
 #workspaces button.focused {
