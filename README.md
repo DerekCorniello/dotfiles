@@ -25,33 +25,17 @@ To install these dotfiles on your system, you can clone the repository and symli
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/yourusername/dotfiles.git
-   cd dotfiles
-   ```
+    ```bash
+    git clone https://github.com/yourusername/dotfiles.git
+    cd dotfiles
+    ```
 
-2. Symlink the configuration files to your home directory:
-
-   ```bash
-   stow gitconfig
-   stow hypr
-   stow kitty
-   stow nvim
-   stow tmux
-   stow waybar
-   stow zshrc
-   ```
-
-   > **Note**: This assumes you have [GNU Stow](https://www.gnu.org/software/stow/) installed. If you don't, you can manually copy the files into your home directory or use another symlink manager.
-
-3. Install required dependencies (if not already installed):
-
-   - Hyprland (hyprlock, hypridle, hyprpaper, hyprland)
-   - Kitty
-   - Neovim
-   - tmux
-   - Waybar
-   - Zsh and Oh My Zsh
+2. Run the `install.sh` scripts:
+    ```bash
+    chmod +x install.sh
+    ./install.sh
+    ```
+   
 
 ## Customizing
 
