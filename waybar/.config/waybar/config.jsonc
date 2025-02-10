@@ -15,7 +15,8 @@
         "clock"
     ],
     "clock": {
-        "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}"
+        "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}",
+        "tooltip": false
     },
     "battery": {
         "states": {
