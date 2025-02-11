@@ -37,7 +37,10 @@
             "",
             ""
         ],
-        "tooltip-format": "{time}"
+        "tooltip-format": "{capacity}% - {time} remaining",
+        "tooltip-format-charging": "{capacity}% - {time} until charged",
+        "tooltip-format-plugged": "Plugged in - {capacity}%",
+        "interval": 30
     },
     "network": {
         "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>",
