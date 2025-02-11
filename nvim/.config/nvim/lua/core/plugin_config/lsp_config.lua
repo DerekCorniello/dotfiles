@@ -129,3 +129,10 @@ require('lspconfig').clangd.setup {
         "--fallback-style=webkit"
     }
 }
+
+require('lspconfig').hls.setup {
+    capabilities = capabilities,
+    on_attach = completion_callback,
+    filetypes = {"hs", "haskell"}
+
+}
