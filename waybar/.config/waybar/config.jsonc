@@ -12,7 +12,8 @@
         "bluetooth",
         "pulseaudio",
         "battery",
-        "clock"
+        "clock",
+        "custom/power"
     ],
     "clock": {
         "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}",
@@ -82,5 +83,10 @@
             ]
         },
         "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format": "<span size='13000' foreground='#ff69b4'>⏻</span> ",
+        "on-click": "shutdown now",
+        "tooltip": "Shutdown system"
     }
 }

@@ -56,6 +56,7 @@ button:hover {
     background-color: #eb4d4b;
 }
 
+#custom-power,
 #bluetooth,
 #custom-pacman,
 #pulseaudio,
@@ -121,6 +122,11 @@ button:hover {
 #battery {
     color: @green;
     border-bottom: 2px solid @green;
+}
+
+#custom-power {
+    color: #ff69b4;
+    border-bottom: 2px solid #ff69b4;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
