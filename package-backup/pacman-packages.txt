@@ -7,6 +7,7 @@ bluez-utils
 brightnessctl
 btop
 btrfs-progs
+cabal-install
 checkupdates-with-aur
 discord
 docker
@@ -19,6 +20,7 @@ firefox
 fzf
 gdm
 getnf
+ghc
 git
 gnome-backgrounds
 gnome-calculator
@@ -105,6 +107,7 @@ simple-scan
 slurp
 snapshot
 sof-firmware
+stack
 stow
 sushi
 swaybg
