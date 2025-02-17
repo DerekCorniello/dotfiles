@@ -119,6 +119,7 @@ totem
 ttf-0xproto-nerd
 vim
 waybar
+wdisplays
 wireplumber
 wlroots
 wofi

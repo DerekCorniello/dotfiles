@@ -17,4 +17,6 @@ org.gnome.Platform
 org.gnome.Platform
 org.gnome.Platform
 org.kde.Platform
+org.kde.PlatformTheme.QGnomePlatform
+org.kde.WaylandDecoration.QAdwaitaDecorations
 site.someones.Lonewolf

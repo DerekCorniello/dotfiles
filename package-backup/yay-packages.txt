@@ -6,6 +6,8 @@ kali-themes
 libnm-iwd
 nerdfetch
 networkmanager-iwd-debug
+wdisplays
+wdisplays-debug
 yay
 yay-debug
 zen-browser-bin
