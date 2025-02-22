@@ -1,6 +1,8 @@
+asciiquarium
 baobab
 base
 base-devel
+bash-pipes
 bind
 blueman
 bluez-utils

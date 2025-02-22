@@ -1,4 +1,5 @@
 aurutils
+bash-pipes
 checkupdates-with-aur
 getnf
 hyprshot
@@ -6,6 +7,7 @@ kali-themes
 libnm-iwd
 nerdfetch
 networkmanager-iwd-debug
+pipes.sh
 wdisplays
 wdisplays-debug
 yay
