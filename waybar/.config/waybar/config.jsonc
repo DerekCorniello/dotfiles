@@ -87,6 +87,6 @@
     "custom/power": {
         "format": "<span size='13000' foreground='#ff69b4'>⏻</span> ",
         "on-click": "shutdown now",
-        "tooltip": "Shutdown system"
+        "tooltip": false
     }
 }
