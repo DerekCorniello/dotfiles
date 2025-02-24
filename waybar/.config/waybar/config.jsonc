@@ -17,7 +17,17 @@
     ],
     "clock": {
         "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}",
-        "tooltip": false
+        "interval": 1,   
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "format": {
+                "today": "<span color='#fAfBfC'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "shift_down",
+            "on-click": "shift_up"
+        }
     },
     "battery": {
         "states": {
@@ -68,7 +78,7 @@
         "interval": 600,
         "exec": "checkupdates | wc -l",
         "exec-if": "exit 0",
-        "on-click": "kitty sh -c 'yay; sudo pacman -Syu; echo Done with download, backing up...; ~/dotfiles/package-backup/backup-packages.sh; echo Done with backup - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        "on-click": "kitty sh -c 'yay; sudo -v && yes \"\" | sudo pacman -Syu; echo Done with download, backing up...; ~/dotfiles/package-backup/backup-packages.sh; echo Done with backup; read'; pkill -SIGRTMIN+8 waybar",
         "signal": 8,
         "tooltip": false
     },
