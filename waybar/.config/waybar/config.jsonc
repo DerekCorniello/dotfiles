@@ -78,7 +78,7 @@
         "interval": 600,
         "exec": "checkupdates | wc -l",
         "exec-if": "exit 0",
-        "on-click": "kitty sh -c 'yay; sudo -v && yes \"\" | sudo pacman -Syu; echo Done with download, backing up...; ~/dotfiles/package-backup/backup-packages.sh; echo Done with backup; read'; pkill -SIGRTMIN+8 waybar",
+        "on-click": "kitty sh -c 'yes \"\" | (yay; sudo -v && sudo pacman -Syu; ~/dotfiles/package-backup/backup-packages.sh)' pkill -SIGRTMIN+8 waybar",
         "signal": 8,
         "tooltip": false
     },
