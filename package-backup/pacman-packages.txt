@@ -131,7 +131,6 @@ xdg-desktop-portal-wlr
 xdg-user-dirs-gtk
 xf86-input-libinput
 xorg-xinput
-yay
 yazi
 yelp
 zen-browser-bin

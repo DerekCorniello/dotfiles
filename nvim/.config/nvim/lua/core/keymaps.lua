@@ -13,7 +13,7 @@ vim.opt.wrap = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("USERPROFILE") .. "/.nvim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -104,14 +104,14 @@ vim.keymap.set('n', '<leader><tab>j', '<c-w>j')
 vim.keymap.set('n', '<leader><tab>k', '<c-w>k')
 vim.keymap.set('n', '<leader><tab>l', '<c-w>l')
 
-vim.keymap.set({"n", "v"}, "<leader>ew", ':lua vim.diagnostic.open_float()<CR>')
-vim.keymap.set({"n", "v"}, "<leader>def", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>")
-vim.keymap.set({"n", "v"}, "<leader>dec", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>")
-vim.keymap.set({"n", "v"}, "<leader>ref", function()
-  require('goto-preview').goto_preview_references()
-  vim.schedule(function()
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
-  end)
+vim.keymap.set({ "n", "v" }, "<leader>ew", ':lua vim.diagnostic.open_float()<CR>')
+vim.keymap.set({ "n", "v" }, "<leader>def", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>dec", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>ref", function()
+    require('goto-preview').goto_preview_references()
+    vim.schedule(function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+    end)
 end)
 
 vim.keymap.set('n', '<CR>', '<CR>') -- Unmaps Enter in normal mode

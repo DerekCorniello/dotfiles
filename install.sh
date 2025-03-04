@@ -33,9 +33,20 @@ if ! command -v yay &>/dev/null; then
 fi
 
 echo "Installing packages from package-backup..."
-xargs -a package-backup/pacman-packages.txt sudo pacman -S --needed --noconfirm
-xargs -a package-backup/yay-packages.txt yay -S --needed --noconfirm
-xargs -a package-backup/flatpak-packages.txt flatpak install -y
+if [ -f package-backup/pacman-packages.txt ]; then
+    xargs --no-run-if-empty -a package-backup/pacman-packages.txt sudo pacman -S --needed --noconfirm
+fi
+
+if [ -f package-backup/yay-packages.txt ]; then
+    xargs --no-run-if-empty -a package-backup/yay-packages.txt yay -S --needed --noconfirm
+fi
+
+if [ -f package-backup/flatpak-packages.txt ]; then
+    xargs --no-run-if-empty -a package-backup/flatpak-packages.txt flatpak install --latest -y
+fi
+
+echo "Ensuring critical packages are installed..."
+sudo pacman -S --needed --noconfirm networkmanager blueman
 
 echo "Stowing dotfiles..."
 stow */
