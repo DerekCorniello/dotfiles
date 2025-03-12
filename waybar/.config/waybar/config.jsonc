@@ -17,7 +17,7 @@
     ],
     "clock": {
         "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}",
-        "interval": 1,   
+        "interval": 1,
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "format": {
@@ -97,8 +97,8 @@
     },
     "custom/power": {
         "format": "<span size='13000' foreground='#ff69b4'>⏻</span> ",
-        "on-click-right": "shutdown now",
-        "on-click-left": "reboot",
+        "on-click-left": "shutdown now",
+        "on-click-right": "reboot",
         "tooltip": false
     }
 }
