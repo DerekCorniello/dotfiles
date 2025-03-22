@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Get the current keyboard brightness level
 current_level=$(asusctl -k | awk -F': ' '/Current keyboard led brightness/ {print $2}')
 
@@ -10,10 +9,11 @@ brightness_levels=("Off" "Low" "Med" "High")
 get_index() {
     for i in "${!brightness_levels[@]}"; do
         if [[ "${brightness_levels[$i]}" == "$1" ]]; then
+            echo $i
             return
         fi
     done
-
+    echo -1  # Return -1 if not found
 }
 
 # Get the index of the current level

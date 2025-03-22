@@ -133,6 +133,13 @@ require('lspconfig').clangd.setup {
 require('lspconfig').hls.setup {
     capabilities = capabilities,
     on_attach = completion_callback,
-    filetypes = {"hs", "haskell"}
+    filetypes = { "hs", "haskell" }
 
+}
+
+require("lspconfig").gdscript.setup {
+    filetypes = { "gd", "gdscript" },
+    root_dir = require("lspconfig").util.root_pattern("project.godot"),
+    on_attach = completion_callback,
+    capabilities = capabilities
 }

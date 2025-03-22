@@ -43,6 +43,7 @@ local plugins =
     "mfussenegger/nvim-dap",
     "windwp/nvim-ts-autotag",
     "ray-x/web-tools.nvim",
+    'lommix/godot.nvim',
     {
       "iamcco/markdown-preview.nvim",
       cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

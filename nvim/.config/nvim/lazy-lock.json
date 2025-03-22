@@ -7,6 +7,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "gitsigns.nvim": { "branch": "main", "commit": "9b36d497495436c135659902054ee637e0ba6021" },
+  "godot.nvim": { "branch": "main", "commit": "dc0bf921609e9093310e9ffe66890d40d6339ebe" },
   "gopher.nvim": { "branch": "main", "commit": "0ed14a40d9799ac8d92aaf9eb1cd9be22ffd6b14" },
   "goto-preview": { "branch": "main", "commit": "4972fcd01c568c2ae981f3f48182e7832ed544ec" },
   "harpoon": { "branch": "harpoon2", "commit": "a84ab829eaf3678b586609888ef52f7779102263" },

@@ -57,10 +57,10 @@
         "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>",
         "format-ethernet": "<span size='15000' foreground='#f5e0dc'>󰈀</span> ",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span size='13000' foreground='#f5e0dc'>󰤭</span>",
+        "format-disconnected": "<span size='13000' foreground='#f5e0dc'>󰤭</span>  ",
         "tooltip-format-wifi": "{essid} - {signalStrength}%",
         "tooltip-format-ethernet": "{ifname} - Wired",
-        "on-click": "nmtui"
+        "on-click": "kitty nmtui"
     },
     "bluetooth": {
         "format-on": "<span size='13000' foreground='#89dceb'>󰂯</span>",
@@ -97,7 +97,7 @@
     },
     "custom/power": {
         "format": "<span size='13000' foreground='#ff69b4'>⏻</span> ",
-        "on-click-left": "shutdown now",
+        "on-click": "shutdown now",
         "on-click-right": "systemctl reboot",
         "tooltip": false
     }

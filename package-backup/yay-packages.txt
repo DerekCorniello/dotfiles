@@ -10,6 +10,7 @@ hyprshot
 kali-themes
 nerdfetch
 pipes.sh
+unityhub
 wdisplays
 wdisplays-debug
 yay-bin
