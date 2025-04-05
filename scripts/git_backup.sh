@@ -24,11 +24,13 @@ if ! mountpoint -q /mnt/usb; then
   device=$(blkid -U "$USB_UUID")
   if [ -z "$device" ]; then
     echo "Error: Could not find a device with UUID $USB_UUID."
+    sudo rm -rf $local_backup_dir
     exit 1
   fi
-  sudo mount "$device" /mnt/usb
+  sudo mount -t ntfs-3g "$device" /mnt/usb
   if [ $? -ne 0 ]; then
     echo "Error: Failed to mount $device on /mnt/usb."
+    sudo rm -rf $local_backup_dir
     exit 1
   fi
 fi
@@ -38,6 +40,7 @@ device=$(df /mnt/usb | tail -1 | awk '{print $1}')
 actual_uuid=$(blkid -o value -s UUID "$device")
 if [ "$actual_uuid" != "$USB_UUID" ]; then
   echo "Error: /mnt/usb is not the expected USB drive. Found UUID: $actual_uuid"
+  sudo rm -rf $local_backup_dir
   exit 1
 fi
 
@@ -54,6 +57,7 @@ while true; do
   if [[ "${json:0:1}" != "[" ]]; then
     echo "Error: Unexpected API response:"
     echo "$json"
+    sudo rm -rf $local_backup_dir
     exit 1
   fi
 
@@ -91,6 +95,7 @@ while true; do
   ((page++))
 done
 
+sudo umount "$device" /mnt/usb
 sudo rm -rf $local_backup_dir
 
 echo "🎉 All repositories have been backed up to $usb_backup_dir"

@@ -89,6 +89,7 @@ network-manager-applet
 networkmanager
 nodejs
 npm
+ntfs-3g
 nvidia
 nwg-look
 onefetch
