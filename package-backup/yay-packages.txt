@@ -2,12 +2,12 @@ asusctl
 asusctl-debug
 aurutils
 bash-pipes
-bastet
 bastet-debug
 checkupdates-with-aur
 getnf
 hyprshot
 kali-themes
+logkeys-debug
 nerdfetch
 pipes.sh
 unityhub

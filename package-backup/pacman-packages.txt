@@ -4,7 +4,6 @@ baobab
 base
 base-devel
 bash-pipes
-bastet
 bind
 blueman
 bluez-utils
@@ -14,6 +13,7 @@ btrfs-progs
 checkupdates-with-aur
 discord
 docker
+dosfstools
 efibootmgr
 epiphany
 evince
@@ -84,6 +84,7 @@ man-db
 nautilus
 neovim
 nerdfetch
+nethack
 network-manager-applet
 networkmanager
 nodejs

@@ -79,7 +79,7 @@
         "interval": 600,
         "exec": "checkupdates | wc -l",
         "exec-if": "exit 0",
-        "on-click": "kitty sh -c 'yes \"\" | (yay; sudo -v && sudo pacman -Syu; ~/dotfiles/package-backup/backup-packages.sh)' pkill -SIGRTMIN+8 waybar",
+        "on-click": "kitty sh -c 'yes \"\" | (yay; sudo -v && sudo pacman -Syu; ~/dotfiles/package-backup/backup-packages.sh);' pkill -RTMIN waybar",
         "signal": 8,
         "tooltip": false
     },
@@ -96,7 +96,7 @@
         "on-click": "pavucontrol"
     },
     "custom/power": {
-        "format": "<span size='13000' foreground='#ff69b4'>⏻</span> ",
+        "format": "<span size='13000' foreground='#ff69b4'>⏻</span>",
         "on-click": "shutdown now",
         "on-click-right": "systemctl reboot",
         "tooltip": false
