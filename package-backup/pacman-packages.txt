@@ -106,7 +106,6 @@ rygel
 simple-scan
 snapshot
 sof-firmware
-stack
 stow
 sushi
 swaybg
@@ -116,7 +115,6 @@ thunar
 tmux
 totem
 ttf-0xproto-nerd
-unityhub
 vim
 waybar
 wdisplays

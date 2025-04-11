@@ -4,13 +4,13 @@ aurutils
 bash-pipes
 bastet-debug
 checkupdates-with-aur
+ckb-next-debug
 getnf
 hyprshot
 kali-themes
 logkeys-debug
 nerdfetch
 pipes.sh
-unityhub
 wdisplays
 wdisplays-debug
 yay-bin
