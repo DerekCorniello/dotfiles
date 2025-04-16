@@ -23,10 +23,12 @@ current_index=$(get_index "$current_level")
 if [[ "$1" == "up" ]]; then
     if [[ "$current_index" -lt $((${#brightness_levels[@]} - 1)) ]]; then
         asusctl -n  # Increase brightness only if not at max
+        notify-send -t 2000 -h string:x-canonical-private-synchronous:keyboard-brightness -i application-default "Keyboard Brightness Updated" "Brightness Up"
     fi
 elif [[ "$1" == "down" ]]; then
     if [[ "$current_index" -gt 0 ]]; then
         asusctl -p  # Decrease brightness only if not at off
+        notify-send -t 2000 -h string:x-canonical-private-synchronous:keyboard-brightness -i application-default "Keyboard Brightness Updated" "Brightness Down"
     fi
 else
     exit 1

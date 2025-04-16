@@ -4,6 +4,7 @@ baobab
 base
 base-devel
 bash-pipes
+bear
 bind
 blueman
 bluez-utils
@@ -115,6 +116,7 @@ thunar
 tmux
 totem
 ttf-0xproto-nerd
+unityhub
 vim
 waybar
 wdisplays

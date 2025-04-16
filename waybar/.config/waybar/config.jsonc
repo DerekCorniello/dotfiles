@@ -79,7 +79,7 @@
         "interval": 600,
         "exec": "checkupdates | wc -l",
         "exec-if": "exit 0",
-        "on-click": "kitty sh -c 'yes \"\" | (yay; sudo -v && sudo pacman -Syu; ~/dotfiles/package-backup/backup-packages.sh);' pkill -RTMIN waybar",
+        "on-click": "kitty sh -c 'yes \"\" | (yay; sudo -v && sudo pacman -Syu; ~/dotfiles/package-backup/backup-packages.sh); pkill -SIGRTMIN+8 waybar'",
         "signal": 8,
         "tooltip": false
     },
