@@ -10,6 +10,7 @@ hyprshot
 kali-themes
 logkeys-debug
 nerdfetch
+omnisharp-roslyn-debug
 pipes.sh
 unityhub
 wdisplays

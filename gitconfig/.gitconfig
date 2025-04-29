@@ -142,3 +142,8 @@
 	directory = /mnt/usb/github-backups/technical-project-deadline-10-14-23-DerekCorniello
 	directory = /mnt/usb/github-backups/waph-team01-sm24.github.io
 	directory = /mnt/usb/github-backups/waph-teamproject
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

@@ -11,7 +11,13 @@ require("mason-lspconfig").setup({
     ensure_installed = { "lua_ls", "pylsp", "ts_ls", "denols", "jsonls", "rust_analyzer" }
 })
 local completion_callback = require('cmp_nvim_lsp').on_attach
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- enable experimental feature for file watching
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.workspace = capabilities.workspace or {}
+capabilities.workspace.didChangeWatchedFiles = {
+    dynamicRegistration = true
+}
 
 require 'lspconfig'.lua_ls.setup {
     capabilities = capabilities,
@@ -142,4 +148,22 @@ require("lspconfig").gdscript.setup {
     root_dir = require("lspconfig").util.root_pattern("project.godot"),
     on_attach = completion_callback,
     capabilities = capabilities
+}
+
+require("lspconfig").omnisharp.setup {
+    cmd = {
+        "omnisharp", -- or the full path to OmniSharp executable
+        "--languageserver",
+        "--hostPID",
+        tostring(vim.fn.getpid()),
+    },
+    -- Omnisharp settings
+    enable_editorconfig_support = true,
+    enable_ms_build_load_projects_on_demand = false,
+    enable_roslyn_analyzers = false,
+    organize_imports_on_format = false,
+    enable_import_completion = false,
+    sdk_include_prereleases = true,
+    analyze_open_documents_only = false,
+    capabilities = capabilities,
 }
