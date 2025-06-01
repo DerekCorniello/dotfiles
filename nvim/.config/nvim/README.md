@@ -1,70 +1,126 @@
 ![Neovim](https://img.shields.io/badge/neovim-%2357A143.svg?style=for-the-badge&logo=neovim&logoColor=white)
 
-# Neovim Setup Documentation
+# 🚀 Derek's Neovim Configuration
 
-## Introduction
+A highly optimized, modular Neovim configuration built for modern development. This setup combines performance, aesthetics, and powerful features to create a seamless coding experience.
 
-This document outlines the configuration and plugins used in my Neovim setup.
+## ✨ Features
 
-Updated as of NeoVim 10.1
+- 🎨 Beautiful OneDark theme with enhanced syntax highlighting
+- ⚡ Blazing fast startup time with lazy-loaded plugins
+- 🧠 Smart auto-completion with nvim-cmp
+- 🔍 Powerful fuzzy finding with Telescope
+- 🧰 Language Server Protocol (LSP) support
+- 🐙 Git integration with Gitsigns and Fugitive
+- 📝 Markdown and LaTeX support
+- 🌳 File explorer with built-in tree navigation
+- 🔄 Session management and undo tree
 
-## Neovim Configuration
+## 🏗️ Project Structure
 
-### 1. General Settings
+The configuration follows a modular structure with separate files for different concerns:
 
-- Relative Line Numbers
-- Tab size of 4 spaces
-- Auto-indent
-- Folding
+- `init.lua` - Entry point that loads core configuration
+- `lua/core/` - Core configuration files:
+  - `init.lua` - Main configuration
+  - `keymaps.lua` - Key mappings
+  - `options.lua` - Editor options
+  - `autocmd.lua` - Auto-commands
+  - `plugins/` - Individual plugin configurations
 
-### 2. Plugin Management
+This structure keeps the configuration organized and maintainable, with each file handling a specific aspect of the setup.
 
-Plugins are managed using [lazy.nvim, by folke](https://github.com/folke/lazy.nvim).
+## 🎮 Key Bindings
 
-Some of the plugins used:
-- Visuals: [OneDark, by navarasu](https://github.com/navarasu/onedark.nvim), [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) and [lualine](https://github.com/nvim-lualine/lualine.nvim)
-- LSP: [Mason, by williamboman](https://github.com/williamboman/mason.nvim)
-- Completion: [CMP, by hrsh7th](https://github.com/hrsh7th/nvim-cmp)
-- File Browsing: [Harpoon, by thePrimeagen](https://github.com/ThePrimeagen/harpoon/tree/harpoon2) and [telescope](https://github.com/nvim-telescope/telescope.nvim)
-- Git: [Gitsigns, by lewis6991](https://github.com/lewis6991/gitsigns.nvim) and [fugitive, by tpope](https://github.com/tpope/vim-fugitive)
-- [UndoTree](https://github.com/mbbill/undotree): Keeps track of your undo history in tree form.
-- [Lualine](https://github.com/nvim-lualine/lualine.nvim): Stylized bar at the bottom of the cmdline.
-- ...and a whole lot more...
+### 🎯 Navigation
+- `<leader>pv` - Open file explorer
+- `<C-h/j/k/l>` - Navigate between windows
+- `<leader><tab>h/j/k/l` - Move buffer focus
+- `<C-d>/<C-u>` - Half page navigation
+- `zz/zv/zb` - Center/scroll view
 
-### 3. Key Mappings
+### 🔍 Search & Find
+- `<leader>pf` - Find files (Telescope)
+- `<leader>ps` - Live grep (Telescope)
+- `<leader>vh` - Search help tags
+- `gd` - Go to definition
+- `gr` - Show references
+- `K` - Hover documentation
 
-Most are from [thePrimeagens setup](https://github.com/ThePrimeagen/init.lua)
-Some of the keymaps used that are not included in the above setup:
+### 💻 Code Actions
+- `<leader>ca` - Code actions
+- `gD` - Go to declaration
+- `gi` - Go to implementation
+- `gy` - Go to type definition
+- `[d`/`]d` - Navigate diagnostics
+- `<leader>f` - Format document
 
-#### Git Keybindings
-- Leader-G: Executes the Git command.
-- Leader-gp: Pushes changes to the remote repository.
-- Leader-gP: Pulls changes from the remote repository.
-- Leader-gac: Adds all changes to the staging area and commits them.
-- Leader-gc: Commits changes.
-- Leader-gs: Displays the current status of the Git repository.
+### 🐙 Git Integration
+- `<leader>gs` - Git status (Fugitive)
+- `<leader>gp` - Git push
+- `<leader>gP` - Git pull
+- `<leader>gac` - Git add and commit
+- `<leader>gc` - Git commit
 
-#### Yank/Pase to System Register Keybindings
-- Leader-y: Yanks (copies) the selected text to the system clipboard.
-- Leader-y-y: Yanks (copies) the current line to the system clipboard.
-- Leader-p-Leader: Pastes the contents of the system clipboard.
-- Leader-P: Pastes the contents of the system clipboard above the current line.
+### 📋 Clipboard
+- `<leader>y` - Yank to system clipboard
+- `<leader>yy` - Yank line to system clipboard
+- `<leader>p` - Paste from system clipboard
+- `<leader>P` - Paste above from system clipboard
 
-#### Other Keybindings
-- Leader-p-v: Opens the viewer.
-- Leader-p-f: Does a search on files for keyword.
-- Leader-p-s: Does a grep search on keyword.
-- Leader-f: Formats the file. 
-- K/J (in visual mode): Moves the selected text up/down one line with tabbing.
-- Leader-u: Toggles UndoTree
+### 🧩 Plugin Specific
+- `<leader>u` - Toggle UndoTree
+- `<C-h/j/k/l>` - Navigate Harpoon files
+- `<C-zx>` - Cycle Harpoon files
+- `<C-xv>` - Open Telescope selection in split
 
-#### Movement Keybindings
-- Leader-<tab>-hjkl: Moves current buffer in focus using vim motions
-- C-hjkl: moves around top 4 files in Harpoon 
-- C-zx: moves left and right around the Harpoon files
-- C-xv: in Telescope, opens up the selected file in a sp/vsp
+## 🚀 Why Neovim?
 
-## Connect with Me!
+### Performance
+- **Lightning Fast**: Near-instantaneous startup and navigation
+- **Minimal Resource Usage**: Uses a fraction of the memory of traditional IDEs
+- **Native Performance**: Written in C and Lua for maximum speed
+
+### Customization
+- **Endless Flexibility**: Tailor every aspect to your workflow
+- **Version Controlled**: Your entire setup is portable and reproducible
+- **Community Plugins**: Access to thousands of community-maintained plugins
+
+### Developer Experience
+- **Modal Editing**: More efficient than traditional editing
+- **Keyboard-Centric**: Keep your hands on the keyboard
+- **Terminal Integration**: Seamless terminal and editor workflow
+- **Language Server Protocol**: IDE-like features for any language
+
+### Future-Proof
+- **Active Development**: Backed by a vibrant open-source community
+- **Lua Configuration**: Modern, maintainable, and powerful
+- **Plugin Ecosystem**: Growing collection of high-quality plugins
+
+## 🛠️ Installation
+
+1. Install Neovim 0.9.0 or later
+2. Clone this repository to `~/.config/nvim`
+3. Start Neovim and let `lazy.nvim` handle plugin installation
+
+## 📦 Dependencies
+
+- [Neovim 0.9.0+](https://github.com/neovim/neovim/releases)
+- [ripgrep](https://github.com/BurntSushi/ripgrep) (for live grep)
+- [fd](https://github.com/sharkdp/fd) (for file finding)
+- [Node.js](https://nodejs.org/) (for LSP support)
+- [Git](https://git-scm.com/) (for version control)
+
+## 🤝 Contributing
+
+Feel free to submit issues and enhancement requests. Pull requests are welcome!
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📬 Connect with Me!
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230A66C2.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/derek-corniello)
 [![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/derekcorniello)
 [![X](https://img.shields.io/badge/X-%231DA1F2.svg?style=for-the-badge&logo=x&logoColor=white)](https://x.com/derekcorniello)

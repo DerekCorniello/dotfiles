@@ -123,7 +123,7 @@ unityhub
 vim
 waybar
 wdisplays
-wlroots
+wlroots0.18
 wofi
 xclip
 xdg-desktop-portal-gnome
@@ -135,7 +135,6 @@ xorg-xev
 xorg-xinput
 yarn
 yay-bin
-yay-bin-debug
 yazi
 yelp
 zen-browser-bin
