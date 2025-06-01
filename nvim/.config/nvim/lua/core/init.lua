@@ -24,30 +24,53 @@ vim.diagnostic.config({
 
 local plugins =
 {
+    -- Colorscheme
     "navarasu/onedark.nvim",
+    
+    -- LSP and Completion
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
+    "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
-    "hrsh7th/nvim-cmp",
-    'hrsh7th/vim-vsnip',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    
+    -- Snippets
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
-    "nvim-treesitter/nvim-treesitter",
+    "rafamadriz/friendly-snippets",
+    
+    -- Autopairs
+    "windwp/nvim-autopairs",
+    
+    -- Treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+    },
+    "windwp/nvim-ts-autotag",
+    
+    -- Git
     "tpope/vim-fugitive",
     "lewis6991/gitsigns.nvim",
+    
+    -- Debugging
     "mfussenegger/nvim-dap",
-    "windwp/nvim-ts-autotag",
+    
+    -- Web Development
     "ray-x/web-tools.nvim",
+    
+    -- Godot
     'lommix/godot.nvim',
+    
+    -- Markdown
     {
-      "iamcco/markdown-preview.nvim",
-      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-      build = "cd app && yarn install",
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && yarn install",
       init = function()
         vim.g.mkdp_filetypes = { "markdown" }
       end,
