@@ -63,9 +63,6 @@ local plugins =
     -- Web Development
     "ray-x/web-tools.nvim",
     
-    -- Godot
-    'lommix/godot.nvim',
-    
     -- Markdown
     {
         "iamcco/markdown-preview.nvim",
@@ -122,6 +119,16 @@ local plugins =
           event = "BufEnter",
           config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
         }
+    },
+    {
+        "kylechui/nvim-surround",
+        version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+        event = "VeryLazy",
+        config = function()
+            require("nvim-surround").setup({
+                -- Configuration here, or leave empty to use defaults
+            })
+        end
     }
 }
 require("lazy").setup(plugins)
