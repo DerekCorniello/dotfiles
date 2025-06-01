@@ -1,3 +1,7 @@
+local lspconfig = require('lspconfig')
+local util = require('lspconfig.util')
+
+-- Setup mason with UI icons
 require("mason").setup({
     ui = {
         icons = {
@@ -7,163 +11,126 @@ require("mason").setup({
         },
     }
 })
+
+-- Setup mason-lspconfig without automatic enabling to avoid double servers
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "denols", "jsonls", "rust_analyzer" }
+    automatic_enable = false,
+    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "denols", "jsonls", "rust_analyzer", "gopls", "sqls", "ls_emmet", "html", "clangd" }
 })
-local completion_callback = require('cmp_nvim_lsp').on_attach
 
--- enable experimental feature for file watching
+-- Custom on_attach for all LSPs
+local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    local keymap = vim.keymap.set
+
+    keymap('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    keymap('n', 'gd', vim.lsp.buf.definition, bufopts)
+    keymap('n', 'K', vim.lsp.buf.hover, bufopts)
+    keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    keymap('n', 'gr', vim.lsp.buf.references, bufopts)
+    keymap('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    keymap('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    keymap('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    keymap('n', '<space>f', function() vim.lsp.buf.format({ async = true }) end, bufopts)
+    keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    keymap('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
+    keymap('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    keymap('n', '[d', vim.diagnostic.goto_prev, bufopts)
+    keymap('n', ']d', vim.diagnostic.goto_next, bufopts)
+    keymap('n', '<space>q', vim.diagnostic.setloclist, bufopts)
+end
+
+-- Setup capabilities with snippet and experimental file watching support
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.workspace = capabilities.workspace or {}
-capabilities.workspace.didChangeWatchedFiles = {
-    dynamicRegistration = true
-}
+capabilities.workspace.didChangeWatchedFiles = { dynamicRegistration = true }
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require 'lspconfig'.lua_ls.setup {
+-- Manual lua_ls setup (overrides mason-lspconfig automatic setup)
+lspconfig.lua_ls.setup({
+    on_attach = on_attach,
     capabilities = capabilities,
-    on_attach = completion_callback,
     settings = {
         Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
+            runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+            diagnostics = { globals = { 'vim' }, disable = { 'lowercase-global' } },
+            workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
+            completion = { callSnippet = 'Replace' },
+        },
     },
     handlers = {
         ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
             config = config or {}
             config.virtual_text = config.virtual_text or {
-                severity = {
-                    min = vim.diagnostic.severity.ERROR,
-                    max = vim.diagnostic.severity.HINT,
-                },
+                severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.HINT },
                 severity_sort = true,
             }
-            vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+            if vim.diagnostic and vim.diagnostic.on_publish_diagnostics then
+                vim.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+            end
         end,
     },
-}
-require('lspconfig').pylsp.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback
-}
+})
 
-local util = require "lspconfig/util"
-
-require('lspconfig').gopls.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-    cmd = { "gopls" },
-    filetypes = { "go", "gomod", "gowork", "gotmpl" },
-    root_dir = util.root_pattern { "go.work", "go.mod", ".git" },
-    settings = {
-        gopls = {
-            completeUnimported = true,
-            usePlaceholders = true,
-            analyses = {
-                unusedparams = true,
-            }
-        }
-    }
-}
-
-require('lspconfig').ts_ls.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-}
-
-require('lspconfig').jsonls.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-}
-
-require('lspconfig').sqls.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-    lowercaseKeywords = false
-}
-
-local configs = require 'lspconfig.configs'
-
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-if not configs.ls_emmet then
-    configs.ls_emmet = {
-        default_config = {
-            cmd = { 'ls_emmet', '--stdio' },
-            filetypes = {
-                'html',
-                'css',
-                'scss',
-                'javascriptreact',
-                'typescriptreact',
-                'haml',
-                'xml',
-                'xsl',
-                'pug',
-                'slim',
-                'sass',
-                'stylus',
-                'less',
-                'sss',
-                'hbs',
-                'handlebars',
-            },
-            root_dir = function(fname)
-                return vim.loop.cwd()
-            end,
-            settings = {},
-        },
-    }
+-- Setup other servers after Mason installs
+local function setup_servers()
+    local installed = require('mason-lspconfig').get_installed_servers()
+    for _, server in ipairs(installed) do
+        if server ~= "lua_ls" then -- skip lua_ls, manually configured above
+            if server == "gopls" then
+                lspconfig.gopls.setup {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                    cmd = { "gopls" },
+                    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+                    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+                    settings = {
+                        gopls = {
+                            completeUnimported = true,
+                            usePlaceholders = true,
+                            analyses = { unusedparams = true },
+                        }
+                    }
+                }
+            elseif server == "ls_emmet" then
+                -- Emmet config (only if not defined already)
+                if not lspconfig.configs.ls_emmet then
+                    lspconfig.configs.ls_emmet = {
+                        default_config = {
+                            cmd = { 'ls_emmet', '--stdio' },
+                            filetypes = {
+                                'html', 'css', 'scss', 'javascriptreact', 'typescriptreact', 'haml', 'xml',
+                                'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss', 'hbs', 'handlebars',
+                            },
+                            root_dir = function() return vim.loop.cwd() end,
+                            settings = {},
+                        },
+                    }
+                end
+                lspconfig.ls_emmet.setup({ on_attach = on_attach, capabilities = capabilities })
+            elseif server == "rust_analyzer" then
+                -- dont do anything, theres rustaceanvim for that
+            else
+                -- default server setup for others
+                lspconfig[server].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                })
+            end
+        end
+    end
 end
 
-require('lspconfig').ls_emmet.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-}
+-- Setup after Mason installs servers
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'LspInstallPost',
+    callback = setup_servers,
+    once = true,
+})
 
-require('lspconfig').html.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-}
-
-require('lspconfig').clangd.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-    cmd = {
-        "clangd",
-        "--fallback-style=webkit"
-    }
-}
-
-require('lspconfig').hls.setup {
-    capabilities = capabilities,
-    on_attach = completion_callback,
-    filetypes = { "hs", "haskell" }
-
-}
-
-require("lspconfig").gdscript.setup {
-    filetypes = { "gd", "gdscript" },
-    root_dir = require("lspconfig").util.root_pattern("project.godot"),
-    on_attach = completion_callback,
-    capabilities = capabilities
-}
-
-require("lspconfig").omnisharp.setup {
-    cmd = {
-        "omnisharp", -- or the full path to OmniSharp executable
-        "--languageserver",
-        "--hostPID",
-        tostring(vim.fn.getpid()),
-    },
-    -- Omnisharp settings
-    enable_editorconfig_support = true,
-    enable_ms_build_load_projects_on_demand = false,
-    enable_roslyn_analyzers = false,
-    organize_imports_on_format = false,
-    enable_import_completion = false,
-    sdk_include_prereleases = true,
-    analyze_open_documents_only = false,
-    capabilities = capabilities,
-}
+-- Run setup on startup
+setup_servers()
