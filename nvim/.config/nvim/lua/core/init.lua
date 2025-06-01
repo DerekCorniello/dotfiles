@@ -57,9 +57,6 @@ local plugins =
     "tpope/vim-fugitive",
     "lewis6991/gitsigns.nvim",
     
-    -- Debugging
-    "mfussenegger/nvim-dap",
-    
     -- Web Development
     "ray-x/web-tools.nvim",
     
