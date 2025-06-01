@@ -26,7 +26,7 @@ local plugins =
 {
     -- Colorscheme
     "navarasu/onedark.nvim",
-    
+
     -- LSP and Completion
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
@@ -37,38 +37,38 @@ local plugins =
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp-signature-help",
-    
+
     -- Snippets
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
-    
+
     -- Autopairs
     "windwp/nvim-autopairs",
-    
+
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
     },
     "windwp/nvim-ts-autotag",
-    
+
     -- Git
     "tpope/vim-fugitive",
     "lewis6991/gitsigns.nvim",
-    
+
     -- Web Development
     "ray-x/web-tools.nvim",
-    
+
     -- Markdown
     {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         build = "cd app && yarn install",
-      init = function()
-        vim.g.mkdp_filetypes = { "markdown" }
-      end,
-      ft = { "markdown" },
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
     },
     {
         "kevinhwang91/nvim-ufo",
@@ -112,9 +112,9 @@ local plugins =
             { "<S>u", "<cmd>lua require('undotree').toggle()<cr>" },
         },
         {
-          "rmagatti/goto-preview",
-          event = "BufEnter",
-          config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+            "rmagatti/goto-preview",
+            event = "BufEnter",
+            config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
         }
     },
     {
@@ -126,6 +126,12 @@ local plugins =
                 -- Configuration here, or leave empty to use defaults
             })
         end
+    },
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {}, -- pass setup config here
+        event = "VeryLazy",
     }
 }
 require("lazy").setup(plugins)

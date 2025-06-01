@@ -48,6 +48,14 @@ vim.keymap.set("n", "<leader>gs", function()
     vim.cmd.Git({ 'status' })
 end)
 
+vim.keymap.set("n", "]t", function()
+    require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+    require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
 -- other keybinds may be found in:
 --      * lsp_config
 --      * each plugin
