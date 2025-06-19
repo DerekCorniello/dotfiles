@@ -148,3 +148,4 @@ source $ZSH/oh-my-zsh.sh
 [ -f "/home/derekcorn/.ghcup/env" ] && . "/home/derekcorn/.ghcup/env" # ghcup-env
 export GTK_THEME=kali-dark
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/dotfiles/scripts:$PATH"

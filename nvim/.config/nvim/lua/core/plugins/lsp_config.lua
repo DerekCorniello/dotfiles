@@ -97,9 +97,9 @@ local function setup_servers()
                     }
                 }
             elseif server == "emmet_ls" then
-                -- Emmet config (only if not defined already)
-                if not lspconfig.configs.emmet_ls then
-                    lspconfig.configs.emmet_ls = {
+                local configs = require("lspconfig.configs")
+                if not configs.emmet_ls then
+                    configs.emmet_ls = {
                         default_config = {
                             cmd = { 'emmet_ls', '--stdio' },
                             filetypes = {

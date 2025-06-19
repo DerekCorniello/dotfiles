@@ -1,0 +1,281 @@
+#!/bin/bash
+
+PAIR_FILE=".git/pair-authors"
+
+print_help() {
+  cat <<EOF
+Usage:
+  git pair add -n NAME -e EMAIL                         Add a co-author
+  git pair remove (-n NAME | -e EMAIL)                  Remove a co-author by name or email
+  git pair status                                       List current co-authors
+  git pair clear                                        Remove all co-authors
+  git pair commit -m "message"                          Commit with all co-authors appended
+  git pair commit-once -n NAME -e EMAIL -m "message"    One-time commit with single co-author
+
+Examples:
+  git pair add -n "John Doe" -e johndoe@example.com
+  git pair remove -n "John Doe"
+  git pair remove -e johndoe@example.com
+  git pair status
+  git pair clear
+  git pair commit -m "Fix bug"
+  git pair commit-once -n "John Doe" -e johndoe@example.com -m "Fix bug"
+EOF
+  exit 1
+}
+
+validate_email() {
+  local email="$1"
+  if [[ ! "$email" =~ ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$ ]]; then
+    echo "Invalid email format: $email"
+    exit 1
+  fi
+}
+
+sanitize_input() {
+  local input="$1"
+  echo "$input" | sed 's/[;<>&|`$(){}[\]\\]//g'
+}
+
+add_author() {
+  local name=""
+  local email=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -n|--name)
+        name="$2"
+        shift 2
+        ;;
+      -e|--email)
+        email="$2"
+        shift 2
+        ;;
+      *)
+        echo "Unknown option for add: $1"
+        print_help
+        ;;
+    esac
+  done
+
+  if [[ -z "$name" || -z "$email" ]]; then
+    echo "Add requires both -n NAME and -e EMAIL"
+    exit 1
+  fi
+
+  # validate and sanitize inputs
+  validate_email "$email"
+  name=$(sanitize_input "$name")
+  email=$(sanitize_input "$email")
+
+  local entry="$name <$email>"
+
+  if grep -Fq "$entry" "$PAIR_FILE" 2>/dev/null; then
+    echo "Author already added: $entry"
+  else
+    # create directory if it doesn't exist
+    mkdir -p "$(dirname "$PAIR_FILE")"
+    echo "$entry" >> "$PAIR_FILE"
+    echo "Added: $entry"
+  fi
+}
+
+remove_author() {
+  local name=""
+  local email=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -n|--name)
+        name="$2"
+        shift 2
+        ;;
+      -e|--email)
+        email="$2"
+        shift 2
+        ;;
+      *)
+        echo "Unknown option for remove: $1"
+        print_help
+        ;;
+    esac
+  done
+
+  if [[ -z "$name" && -z "$email" ]]; then
+    echo "Remove requires either -n NAME or -e EMAIL"
+    exit 1
+  fi
+
+  if [[ ! -f "$PAIR_FILE" ]]; then
+    echo "No co-authors to remove."
+    exit 0
+  fi
+
+  local tmpfile
+  tmpfile=$(mktemp)
+  local removed=0
+  local search_term=""
+
+  if [[ -n "$name" ]]; then
+    name=$(sanitize_input "$name")
+    search_term="$name"
+  fi
+  if [[ -n "$email" ]]; then
+    email=$(sanitize_input "$email")
+    search_term="$email"
+  fi
+
+  while IFS= read -r line; do
+    if [[ "$line" == *"$search_term"* ]]; then
+      echo "Removed: $line"
+      removed=1
+    else
+      echo "$line" >> "$tmpfile"
+    fi
+  done < "$PAIR_FILE"
+
+  if [[ $removed -eq 1 ]]; then
+    mv "$tmpfile" "$PAIR_FILE"
+    # remove file if empty
+    if [[ ! -s "$PAIR_FILE" ]]; then
+      rm "$PAIR_FILE"
+    fi
+  else
+    rm "$tmpfile"
+    echo "No match found for: $search_term"
+  fi
+}
+
+clear_authors() {
+  if [[ -f "$PAIR_FILE" ]]; then
+    rm "$PAIR_FILE"
+    echo "All co-authors removed."
+  else
+    echo "No co-authors to clear."
+  fi
+}
+
+status_authors() {
+  if [[ -f "$PAIR_FILE" && -s "$PAIR_FILE" ]]; then
+    local count
+    count=$(wc -l < "$PAIR_FILE")
+    echo "Current co-authors ($count):"
+    cat "$PAIR_FILE"
+  else
+    echo "No co-authors added."
+  fi
+}
+
+commit_with_coauthors() {
+  local commit_args=()
+  local message=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -m)
+        message="$2"
+        shift 2
+        ;;
+      *)
+        commit_args+=("$1")
+        shift
+        ;;
+    esac
+  done
+
+  if [[ -z "$message" ]]; then
+    echo "Commit requires -m 'message'"
+    exit 1
+  fi
+
+  local coauthors=""
+  if [[ -f "$PAIR_FILE" && -s "$PAIR_FILE" ]]; then
+    while IFS= read -r line; do
+      coauthors+=$'\n\nCo-authored-by: '"$line"
+    done < "$PAIR_FILE"
+  fi
+
+  git commit "${commit_args[@]}" -m "$message$coauthors"
+}
+
+commit_once() {
+  local name=""
+  local email=""
+  local message=""
+  local commit_args=()
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -n|--name)
+        name="$2"
+        shift 2
+        ;;
+      -e|--email)
+        email="$2"
+        shift 2
+        ;;
+      -m)
+        message="$2"
+        shift 2
+        ;;
+      *)
+        commit_args+=("$1")
+        shift
+        ;;
+    esac
+  done
+
+  if [[ -z "$name" || -z "$email" || -z "$message" ]]; then
+    echo "commit-once requires -n NAME -e EMAIL -m 'message'"
+    exit 1
+  fi
+
+  # validate and sanitize inputs
+  validate_email "$email"
+  name=$(sanitize_input "$name")
+  email=$(sanitize_input "$email")
+
+  # build co-author block: existing + one-time
+  local coauthors=""
+  if [[ -f "$PAIR_FILE" && -s "$PAIR_FILE" ]]; then
+    while IFS= read -r line; do
+      coauthors+=$'\n\nCo-authored-by: '"$line"
+    done < "$PAIR_FILE"
+  fi
+
+  coauthors+=$'\n\nCo-authored-by: '"$name <$email>"
+
+  git commit "${commit_args[@]}" -m "$message$coauthors"
+}
+
+if [[ $# -lt 1 ]]; then
+  print_help
+fi
+
+cmd="$1"
+shift
+
+case "$cmd" in
+  add)
+    add_author "$@"
+    ;;
+  remove)
+    remove_author "$@"
+    ;;
+  status)
+    status_authors
+    ;;
+  clear)
+    clear_authors
+    ;;
+  commit)
+    commit_with_coauthors "$@"
+    ;;
+  commit-once)
+    commit_once "$@"
+    ;;
+  *)
+    echo "Unknown command: $cmd"
+    print_help
+    ;;
+esac
