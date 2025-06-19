@@ -15,7 +15,7 @@ require("mason").setup({
 -- Setup mason-lspconfig without automatic enabling to avoid double servers
 require("mason-lspconfig").setup({
     automatic_enable = false,
-    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "denols", "jsonls", "rust_analyzer", "gopls", "sqls", "ls_emmet", "html", "clangd" }
+    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "denols", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd" }
 })
 
 -- Custom on_attach for all LSPs
@@ -96,12 +96,12 @@ local function setup_servers()
                         }
                     }
                 }
-            elseif server == "ls_emmet" then
+            elseif server == "emmet_ls" then
                 -- Emmet config (only if not defined already)
-                if not lspconfig.configs.ls_emmet then
-                    lspconfig.configs.ls_emmet = {
+                if not lspconfig.configs.emmet_ls then
+                    lspconfig.configs.emmet_ls = {
                         default_config = {
-                            cmd = { 'ls_emmet', '--stdio' },
+                            cmd = { 'emmet_ls', '--stdio' },
                             filetypes = {
                                 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact', 'haml', 'xml',
                                 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss', 'hbs', 'handlebars',
@@ -111,7 +111,7 @@ local function setup_servers()
                         },
                     }
                 end
-                lspconfig.ls_emmet.setup({ on_attach = on_attach, capabilities = capabilities })
+                lspconfig.emmet_ls.setup({ on_attach = on_attach, capabilities = capabilities })
             elseif server == "rust_analyzer" then
                 -- dont do anything, theres rustaceanvim for that
             else

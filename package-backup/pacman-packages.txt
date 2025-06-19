@@ -79,6 +79,7 @@ hyprshot
 intel-ucode
 kali-themes
 kitty
+libreoffice-still
 linux
 linux-firmware
 loupe
