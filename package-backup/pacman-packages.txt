@@ -91,6 +91,7 @@ nerdfetch
 nethack
 network-manager-applet
 networkmanager
+nmap
 nodejs
 npm
 ntfs-3g
@@ -106,6 +107,7 @@ pulsemixer
 pyenv
 python-pip
 ripgrep
+rpi-imager
 rygel
 simple-scan
 snapshot
