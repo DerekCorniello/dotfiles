@@ -76,10 +76,9 @@
     },
     "custom/pacman": {
         "format": "<span size='13000' foreground='#fab387'>󰅢 </span>{}",
-        "interval": 600,
-        "exec": "checkupdates | wc -l",
-        "exec-if": "exit 0",
-        "on-click": "kitty sh -c 'yes \"\" | (yay; sudo -v && sudo pacman -Syu; ~/dotfiles/package-backup/backup-packages.sh); pkill -SIGRTMIN+8 waybar'",
+        "interval": 7200,
+        "exec": "echo $(( $(checkupdates | wc -l) + $(yay -Qu --quiet | wc -l) ))",
+        "on-click": "kitty sh -c 'yay -Syu; ~/dotfiles/package-backup/backup-packages.sh; pkill -SIGRTMIN+8 waybar'",
         "signal": 8,
         "tooltip": false
     },

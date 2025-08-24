@@ -1,5 +1,13 @@
+arduino-cli
+arm-none-eabi-binutils
+arm-none-eabi-gcc
+arm-none-eabi-newlib
 asciiquarium
 asusctl
+avr-binutils
+avr-gcc
+avr-libc
+avrdude
 baobab
 base
 base-devel
@@ -12,6 +20,8 @@ brightnessctl
 btop
 btrfs-progs
 checkupdates-with-aur
+dfu-programmer
+dfu-util
 discord
 docker
 dosfstools
@@ -19,6 +29,7 @@ dotnet-sdk
 efibootmgr
 epiphany
 evince
+evtest
 fastfetch
 fd
 firefox
@@ -106,11 +117,16 @@ pipewire-alsa
 pulsemixer
 pyenv
 python-pip
+python-pipx
 ripgrep
+riscv64-elf-binutils
+riscv64-elf-gcc
+riscv64-elf-newlib
 rpi-imager
 rygel
 simple-scan
 snapshot
+socat
 sof-firmware
 steam
 stow
@@ -126,6 +142,7 @@ unityhub
 vim
 waybar
 wdisplays
+wireshark-qt
 wlroots0.18
 wofi
 xclip
