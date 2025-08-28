@@ -109,6 +109,7 @@ ntfs-3g
 nvidia
 nwg-look
 onefetch
+opam
 orca
 otf-codenewroman-nerd
 papirus-icon-theme
@@ -133,6 +134,7 @@ stow
 sushi
 swaybg
 swaync
+teams-for-linux
 tecla
 thunar
 tmux
