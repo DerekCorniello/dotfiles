@@ -140,6 +140,7 @@ thunar
 tmux
 totem
 ttf-0xproto-nerd
+ttf-liberation
 unityhub
 vim
 waybar
