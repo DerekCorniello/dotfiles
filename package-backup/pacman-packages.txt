@@ -82,6 +82,7 @@ gvfs-nfs
 gvfs-onedrive
 gvfs-smb
 gvfs-wsdd
+hunspell-en_us
 hypridle
 hyprland
 hyprlock

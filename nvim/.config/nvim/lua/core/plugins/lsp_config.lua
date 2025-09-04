@@ -112,6 +112,15 @@ local function setup_servers()
                     }
                 end
                 lspconfig.emmet_ls.setup({ on_attach = on_attach, capabilities = capabilities })
+            elseif server == "ocamllsp" then
+                lspconfig.ocamllsp.setup({
+                    cmd = { "ocamllsp" },
+                    filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+                    root_dir = lspconfig.util.root_pattern("*.opam", "esy.json", "package.json", ".git", "dune-project",
+                        "dune-workspace"),
+                    on_attach = on_attach,
+                    capabilities = capabilities
+                })
             elseif server == "rust_analyzer" then
                 -- dont do anything, theres rustaceanvim for that
             else

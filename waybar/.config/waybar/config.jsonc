@@ -67,7 +67,6 @@
         "format-off": "<span size='13000' foreground='#f38ba8'>󰂲</span>",
         "format-disabled": "<span size='13000' foreground='#f38ba8'>󰂲</span>",
         "format-connected": "<span size='13000' foreground='#89dceb'>󰂯</span>{num_connections}",
-        "format-connected-battery": "<span size='13000' foreground='#89dceb'>󰂯</span>{device_battery_percentage}%",
         "tooltip-format": "{controller_alias} ({controller_address})\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias} ({controller_address})\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias} ({device_address})",
