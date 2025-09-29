@@ -17,6 +17,7 @@ teams-for-linux-debug
 unityhub
 wdisplays
 wdisplays-debug
+windsurf
 yay-bin
 yay-bin-debug
 zen-browser-bin

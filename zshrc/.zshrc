@@ -158,3 +158,6 @@ export PATH="$HOME/dotfiles/scripts:$PATH"
 # This section can be safely removed at any time if needed.
 [[ ! -r '/home/derekcorn/.opam/opam-init/init.zsh' ]] || source '/home/derekcorn/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+
+# opencode
+export PATH=/home/derekcorn/.opencode/bin:$PATH
