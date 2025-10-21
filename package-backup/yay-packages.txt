@@ -11,6 +11,8 @@ logkeys-debug
 nerdfetch
 omnisharp-roslyn-debug
 pipes.sh
+swaylock-effects
+swaylock-effects-debug
 teams-debug
 teams-for-linux
 teams-for-linux-debug
