@@ -12,10 +12,6 @@ check_directory_for_new_repository() {
  fi
  last_repository=$current_repository
 }
-unalias cd
-cd() {
- builtin cd "$@"
-}
 chpwd_functions+=(check_directory_for_new_repository)
 
 # optional, greet also when opening shell directly in repository directory
