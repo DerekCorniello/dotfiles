@@ -12,10 +12,11 @@ check_directory_for_new_repository() {
  fi
  last_repository=$current_repository
 }
+unalias cd
 cd() {
  builtin cd "$@"
- check_directory_for_new_repository
 }
+chpwd_functions+=(check_directory_for_new_repository)
 
 # optional, greet also when opening shell directly in repository directory
 # adds time to startup
@@ -167,3 +168,11 @@ alias cat='bat'
 alias cd='z'
 alias grep="rg"
 eval "$(zoxide init zsh)"
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
