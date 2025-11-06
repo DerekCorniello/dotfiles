@@ -22,6 +22,8 @@ teams-debug
 teams-for-linux
 teams-for-linux-debug
 unityhub
+vicinae-bin
+vicinae-bin-debug
 wdisplays
 wdisplays-debug
 windsurf

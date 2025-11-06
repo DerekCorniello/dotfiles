@@ -163,3 +163,7 @@ export PATH="$HOME/dotfiles/scripts:$PATH"
 
 # opencode
 export PATH=/home/derekcorn/.opencode/bin:$PATH
+alias cat='bat'
+alias cd='z'
+alias grep="rg"
+eval "$(zoxide init zsh)"

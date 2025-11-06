@@ -1,3 +1,4 @@
+acpid
 arduino-cli
 arm-none-eabi-binutils
 arm-none-eabi-gcc
@@ -12,6 +13,7 @@ baobab
 base
 base-devel
 bash-pipes
+bat
 bear
 bind
 blueman
@@ -152,6 +154,7 @@ totem
 ttf-0xproto-nerd
 ttf-liberation
 unityhub
+vicinae-bin
 vim
 waybar
 wdisplays
@@ -176,5 +179,6 @@ ydotool
 yelp
 zen-browser-bin
 zip
+zoxide
 zram-generator
 zsh
