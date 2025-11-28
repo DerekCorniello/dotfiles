@@ -1,4 +1,6 @@
+7zip
 acpid
+alsa-utils
 arduino-cli
 arm-none-eabi-binutils
 arm-none-eabi-gcc
@@ -26,6 +28,7 @@ dfu-programmer
 dfu-util
 discord
 docker
+docker-compose
 dosfstools
 dotnet-sdk
 dotool
@@ -37,6 +40,7 @@ fastfetch
 fd
 firefox
 fzf
+gdb
 gdm
 getnf
 git
@@ -105,6 +109,7 @@ loupe
 malcontent
 man-db
 nautilus
+ncdu
 neovim
 nerdfetch
 nethack
@@ -120,6 +125,7 @@ nwg-look
 obs-studio
 onefetch
 opam
+opencode-bin
 orca
 otf-codenewroman-nerd
 papirus-icon-theme
@@ -130,6 +136,7 @@ pyenv
 python-pip
 python-pipx
 python-xlib
+quick-mouse
 ripgrep
 riscv64-elf-binutils
 riscv64-elf-gcc
@@ -141,13 +148,13 @@ snapshot
 socat
 sof-firmware
 steam
+stockfish
 stow
 sushi
 swaybg
 swaync
 teams-for-linux
 tecla
-thunar
 tk
 tmux
 totem

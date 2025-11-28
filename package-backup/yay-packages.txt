@@ -17,7 +17,11 @@ llvm17-libs
 logkeys-debug
 nerdfetch
 omnisharp-roslyn-debug
+opencode-bin
 pipes.sh
+quick-mouse
+stockfish
+stockfish-debug
 teams-debug
 teams-for-linux
 teams-for-linux-debug
