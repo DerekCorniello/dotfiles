@@ -24,9 +24,12 @@ brightnessctl
 btop
 btrfs-progs
 checkupdates-with-aur
+cups
+cups-pdf
 dfu-programmer
 dfu-util
 discord
+discordo-git
 docker
 docker-compose
 dosfstools
@@ -90,11 +93,13 @@ gvfs-nfs
 gvfs-onedrive
 gvfs-smb
 gvfs-wsdd
+hplip
 hunspell-en_us
 hypridle
 hyprland
 hyprlock
 hyprpaper
+hyprpicker
 hyprshot
 intel-ucode
 kali-themes

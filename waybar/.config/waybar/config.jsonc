@@ -11,10 +11,19 @@
         "network",
         "bluetooth",
         "pulseaudio",
+        "backlight",
         "battery",
         "clock",
         "custom/power"
     ],
+    "backlight": {
+        "format": "<span size='13000' foreground='#FFE680'>󰃟 </span>{percent}%",
+        "on-click": "brightnessctl set 10%+",
+        "on-click-right": "brightnessctl set 10%-",
+        "on-scroll-up": "brightnessctl set 1%+",
+        "on-scroll-down": "brightnessctl set 1%-",
+        "tooltip": false
+    },
     "clock": {
         "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}",
         "interval": 1,

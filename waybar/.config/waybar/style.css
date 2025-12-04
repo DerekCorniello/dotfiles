@@ -80,6 +80,11 @@ button:hover {
   padding-right: 4px;
 }
 
+#backlight {
+    color: #FFE680;
+    border-bottom: 2px solid #FFE680;
+}
+
 #clock {
     color: @blue;
     border-bottom: 2px solid @blue;
