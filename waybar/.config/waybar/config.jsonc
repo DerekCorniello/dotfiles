@@ -1,5 +1,7 @@
 {
     "position": "top",
+    "layer": "top",
+    "gtk-layer-shell": true,
     "modules-left": [
         "hyprland/workspaces"
     ],
@@ -105,5 +107,9 @@
         "on-click": "shutdown now",
         "on-click-right": "systemctl reboot",
         "tooltip": false
+    },
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format": "{name}"
     }
 }

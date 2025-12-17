@@ -46,6 +46,7 @@ fzf
 gdb
 gdm
 getnf
+gimp
 git
 git-lfs
 gnome-backgrounds
@@ -160,11 +161,14 @@ swaybg
 swaync
 teams-for-linux
 tecla
+thunar
+thunar-volman
 tk
 tmux
 totem
 ttf-0xproto-nerd
 ttf-liberation
+udiskie
 unityhub
 vicinae-bin
 vim
