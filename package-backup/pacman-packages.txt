@@ -24,6 +24,7 @@ brightnessctl
 btop
 btrfs-progs
 checkupdates-with-aur
+chromium
 cups
 cups-pdf
 dfu-programmer
@@ -109,6 +110,7 @@ libreoffice-still
 lightdm
 linux
 linux-firmware
+linux-headers
 llvm17
 llvm17-libs
 loupe
@@ -126,7 +128,7 @@ nodejs
 npm
 nss-mdns
 ntfs-3g
-nvidia
+nvidia-open
 nwg-look
 obs-studio
 onefetch
