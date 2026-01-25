@@ -105,12 +105,14 @@ hyprpicker
 hyprshot
 intel-ucode
 kali-themes
+kdenlive
 kitty
 libreoffice-still
 lightdm
 linux
 linux-firmware
 linux-headers
+llvm
 llvm17
 llvm17-libs
 loupe
@@ -145,6 +147,7 @@ python-pip
 python-pipx
 python-xlib
 quick-mouse
+resvg
 ripgrep
 riscv64-elf-binutils
 riscv64-elf-gcc
@@ -168,6 +171,7 @@ thunar-volman
 tk
 tmux
 totem
+tree
 ttf-0xproto-nerd
 ttf-liberation
 udiskie

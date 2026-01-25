@@ -21,6 +21,8 @@ nerdfetch
 omnisharp-roslyn-debug
 opencode-bin
 pipes.sh
+qt5-webchannel
+qt5-webchannel-debug
 quick-mouse
 stockfish
 stockfish-debug
