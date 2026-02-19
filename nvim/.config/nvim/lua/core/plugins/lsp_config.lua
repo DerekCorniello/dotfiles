@@ -15,7 +15,7 @@ require("mason").setup({
 -- Setup mason-lspconfig without automatic enabling to avoid double servers
 require("mason-lspconfig").setup({
     automatic_enable = false,
-    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "denols", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd" }
+    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd" }
 })
 
 -- Custom on_attach for all LSPs
