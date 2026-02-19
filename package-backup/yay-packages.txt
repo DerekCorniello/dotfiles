@@ -12,7 +12,10 @@ discordo-git-debug
 dotool
 dotool-debug
 getnf
+hyprwhspr
 kali-themes
+libuvc
+libuvc-debug
 llvm17
 llvm17-debug
 llvm17-libs
@@ -21,9 +24,12 @@ nerdfetch
 omnisharp-roslyn-debug
 opencode-bin
 pipes.sh
+python-pulsectl
+python-sounddevice
 qt5-webchannel
 qt5-webchannel-debug
 quick-mouse
+sonar-scanner
 stockfish
 stockfish-debug
 teams-debug
@@ -32,7 +38,6 @@ teams-for-linux-debug
 unityhub
 vicinae-bin
 vicinae-bin-debug
-wdisplays
 wdisplays-debug
 windsurf
 yay-bin

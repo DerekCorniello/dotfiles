@@ -1,115 +1,119 @@
 {
-    "position": "top",
-    "layer": "top",
-    "gtk-layer-shell": true,
-    "modules-left": [
-        "hyprland/workspaces"
-    ],
-    "modules-center": [
-        "hyprland/window"
-    ],
-    "modules-right": [
-        "custom/pacman",
-        "network",
-        "bluetooth",
-        "pulseaudio",
-        "backlight",
-        "battery",
-        "clock",
-        "custom/power"
-    ],
-    "backlight": {
-        "format": "<span size='13000' foreground='#FFE680'>󰃟 </span>{percent}%",
-        "on-click": "brightnessctl set 10%+",
-        "on-click-right": "brightnessctl -n set 10%-",
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl -n set 1%-",
-        "tooltip": false
+  "position": "top",
+  "layer": "top",
+  "gtk-layer-shell": true,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/pacman",
+    "network",
+    "bluetooth",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "clock",
+    "custom/power",
+    "custom/hyprwhspr"
+  ],
+  "backlight": {
+    "format": "<span size='13000' foreground='#FFE680'>\udb80\udcdf </span>{percent}%",
+    "on-click": "brightnessctl set 10%+",
+    "on-click-right": "brightnessctl -n set 10%-",
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl -n set 1%-",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "<span foreground='#89b4fa'>\uf017   </span>{:%H:%M - %m/%d/%Y}",
+    "interval": 1,
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#fAfBfC'><b>{}</b></span>"
+      }
     },
-    "clock": {
-        "format": "<span foreground='#89b4fa'>   </span>{:%H:%M - %m/%d/%Y}",
-        "interval": 1,
-        "tooltip-format": "<tt>{calendar}</tt>",
-        "calendar": {
-            "format": {
-                "today": "<span color='#fAfBfC'><b>{}</b></span>"
-            }
-        },
-        "actions": {
-            "on-click-right": "shift_down",
-            "on-click": "shift_up"
-        }
-    },
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
-        "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
-        "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
-        "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-        "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-        "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "tooltip-format": "{capacity}% - {time} remaining",
-        "tooltip-format-charging": "{capacity}% - {time} until charged",
-        "tooltip-format-plugged": "Plugged in - {capacity}%",
-        "interval": 30
-    },
-    "network": {
-        "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>",
-        "format-ethernet": "<span size='15000' foreground='#f5e0dc'>󰈀</span> ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span size='13000' foreground='#f5e0dc'>󰤭</span>  ",
-        "tooltip-format-wifi": "{essid} - {signalStrength}%",
-        "tooltip-format-ethernet": "{ifname} - Wired",
-        "on-click": "kitty nmtui"
-    },
-    "bluetooth": {
-        "format-on": "<span size='13000' foreground='#89dceb'>󰂯</span>",
-        "format-off": "<span size='13000' foreground='#f38ba8'>󰂲</span>",
-        "format-disabled": "<span size='13000' foreground='#f38ba8'>󰂲</span>",
-        "format-connected": "<span size='13000' foreground='#89dceb'>󰂯</span>",
-        "tooltip-format-connected": "{controller_alias} ({controller_address})\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias} ({device_address})",
-        "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_address}) - {device_battery_percentage}%",
-        "on-click": "blueman-manager"
-    },
-    "custom/pacman": {
-        "format": "<span size='13000' foreground='#fab387'>󰅢 </span>{}",
-        "interval": 7200,
-        "exec": "echo $(( $(checkupdates | wc -l) + $(yay -Qu --quiet | wc -l) ))",
-        "on-click": "kitty sh -c 'yay -Syu --noconfirm; ~/dotfiles/package-backup/backup-packages.sh; pkill -SIGRTMIN+8 waybar'",
-        "signal": 8,
-        "tooltip": false
-    },
-    "pulseaudio": {
-        "format": "<span size='13000'>{icon}  {volume}%</span>",
-        "format-muted": " <span size='12000'></span>  ",
-        "format-icons": {
-            "default": [
-                "",
-                "",
-                " "
-            ]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/power": {
-        "format": "<span size='18000' foreground='#ff69b4'>⏻</span>",
-        "on-click": "shutdown now",
-        "on-click-right": "systemctl reboot",
-        "tooltip": false
-    },
-    "hyprland/workspaces": {
-        "all-outputs": true,
-        "format": "{name}"
+    "actions": {
+      "on-click-right": "shift_down",
+      "on-click": "shift_up"
     }
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
+    "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
+    "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
+    "format-charging": "<span size='13000' foreground='#B1E3AD'>\uf1e6 </span>{capacity}%",
+    "format-plugged": "<span size='13000' foreground='#B1E3AD'>\uf1e6 </span>{capacity}%",
+    "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
+    "format-icons": [
+      "\uf244",
+      "\uf243",
+      "\uf242",
+      "\uf241",
+      "\uf240"
+    ],
+    "tooltip-format": "{capacity}% - {time} remaining",
+    "tooltip-format-charging": "{capacity}% - {time} until charged",
+    "tooltip-format-plugged": "Plugged in - {capacity}%",
+    "interval": 30
+  },
+  "network": {
+    "format-wifi": "<span size='13000' foreground='#f5e0dc'>\uf1eb </span>",
+    "format-ethernet": "<span size='15000' foreground='#f5e0dc'>\udb80\ude00</span> ",
+    "format-linked": "{ifname} (No IP) \uf796",
+    "format-disconnected": "<span size='13000' foreground='#f5e0dc'>\udb82\udd2d</span>  ",
+    "tooltip-format-wifi": "{essid} - {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname} - Wired",
+    "on-click": "kitty nmtui"
+  },
+  "bluetooth": {
+    "format-on": "<span size='13000' foreground='#89dceb'>\udb80\udcaf</span>",
+    "format-off": "<span size='13000' foreground='#f38ba8'>\udb80\udcb2</span>",
+    "format-disabled": "<span size='13000' foreground='#f38ba8'>\udb80\udcb2</span>",
+    "format-connected": "<span size='13000' foreground='#89dceb'>\udb80\udcaf</span>",
+    "tooltip-format-connected": "{controller_alias} ({controller_address})\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias} ({device_address})",
+    "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_address}) - {device_battery_percentage}%",
+    "on-click": "blueman-manager"
+  },
+  "custom/pacman": {
+    "format": "<span size='13000' foreground='#fab387'>\udb80\udd62 </span>{}",
+    "interval": 7200,
+    "exec": "echo $(( $(checkupdates | wc -l) + $(yay -Qu --quiet | wc -l) ))",
+    "on-click": "kitty sh -c 'yay -Syu --noconfirm; ~/dotfiles/package-backup/backup-packages.sh; pkill -SIGRTMIN+8 waybar'",
+    "signal": 8,
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "<span size='13000'>{icon}  {volume}%</span>",
+    "format-muted": " <span size='12000'>\uf466</span>  ",
+    "format-icons": {
+      "default": [
+        "\uf026",
+        "\uf027",
+        "\uf028 "
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "custom/power": {
+    "format": "<span size='18000' foreground='#ff69b4'>\u23fb</span>",
+    "on-click": "shutdown now",
+    "on-click-right": "systemctl reboot",
+    "tooltip": false
+  },
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}"
+  },
+  "include": [
+    "/home/derekcorn/.config/waybar/hyprwhspr-module.jsonc"
+  ]
 }
