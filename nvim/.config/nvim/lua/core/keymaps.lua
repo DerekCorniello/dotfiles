@@ -2,13 +2,15 @@
 -- opens viewer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+vim.keymap.set("n", "H", "K")
+
 -- moves selected text with tabbing
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- joins lines keeping cursor at one point
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "K", "mzK`z")
+vim.keymap.set("n", "K", "mzkJ`z")
 
 -- keeps cursor in middle of screen
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
