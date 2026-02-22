@@ -1,6 +1,6 @@
 -- lots of Primeagen and emacs inspo here...
 -- opens viewer
-vim.keymap.set("n", "<leader>pv", ":Ex")
+vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
 
 vim.keymap.set("n", "H", "K")
 

@@ -106,6 +106,7 @@ hyprpicker
 hyprshot
 hyprwhspr
 intel-ucode
+intellij-idea-community-edition
 kali-themes
 kdenlive
 kitty
@@ -182,6 +183,7 @@ udiskie
 unityhub
 vicinae-bin
 vim
+visual-studio-code-bin
 waybar
 wdisplays
 webkit2gtk

@@ -38,6 +38,7 @@ teams-for-linux-debug
 unityhub
 vicinae-bin
 vicinae-bin-debug
+visual-studio-code-bin
 wdisplays-debug
 windsurf
 yay-bin
