@@ -106,7 +106,6 @@ hyprpicker
 hyprshot
 hyprwhspr
 intel-ucode
-intellij-idea-community-edition
 kali-themes
 kdenlive
 kitty
@@ -119,6 +118,7 @@ llvm
 llvm17
 llvm17-libs
 loupe
+lxc
 malcontent
 man-db
 nautilus
@@ -138,6 +138,7 @@ nwg-look
 obs-studio
 onefetch
 opam
+openbsd-netcat
 opencode-bin
 orca
 otf-codenewroman-nerd
@@ -165,6 +166,7 @@ sonar-scanner
 steam
 stockfish
 stow
+strace
 sushi
 swaybg
 swaync
@@ -183,8 +185,8 @@ udiskie
 unityhub
 vicinae-bin
 vim
-visual-studio-code-bin
 waybar
+waydroid
 wdisplays
 webkit2gtk
 windsurf
