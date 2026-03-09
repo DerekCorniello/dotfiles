@@ -1,0 +1,14 @@
+window {
+    background-color: #121212;
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+label {
+    color: #ffffff;
+    text-shadow: none;
+}
+
+image {
+    color: #ffffff;
+}
