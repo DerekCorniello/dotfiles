@@ -78,7 +78,9 @@ button:hover {
 #tray,
 #network,
 #mode,
-#scratchpad {
+#scratchpad,
+#custom-hyprpicker,
+#custom-hyprwhspr {
   margin-top: 2px;
   margin-bottom: 2px;
   margin-left: 4px;
@@ -156,4 +158,14 @@ button:hover {
     border-radius: 15px;
     padding-left: 6px;
     padding-right: 6px;
+}
+
+#custom-hyprpicker {
+    color: #f38ba8;
+    border-bottom: 2px solid #f38ba8;
+}
+
+#custom-hyprwhspr {
+    color: #89dceb;
+    border-bottom: 2px solid #89dceb;
 }

@@ -10,21 +10,22 @@
   ],
   "modules-right": [
     "custom/pacman",
+    "custom/hyprpicker",
+    "custom/hyprwhspr",
     "network",
     "bluetooth",
     "pulseaudio",
     "backlight",
     "battery",
     "clock",
-    "custom/power",
-    "custom/hyprwhspr"
+    "custom/power"
   ],
   "backlight": {
     "format": "<span size='13000' foreground='#FFE680'>\udb80\udcdf </span>{percent}%",
     "on-click": "brightnessctl set 10%+",
-    "on-click-right": "brightnessctl -n set 10%-",
-    "on-scroll-up": "brightnessctl set 1%+",
-    "on-scroll-down": "brightnessctl -n set 1%-",
+    "on-click-right": "brightnessctl set 10%-",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
     "tooltip": false
   },
   "clock": {
@@ -113,7 +114,16 @@
     "all-outputs": true,
     "format": "{name}"
   },
-  "include": [
-    "/home/derekcorn/.config/waybar/hyprwhspr-module.jsonc"
-  ]
+
+  "custom/hyprpicker": {
+    "format": "<span size='18000' foreground='#f38ba8'>⌖</span>",
+    "on-click": "hyprpicker",
+    "tooltip": false
+  },
+
+  "custom/hyprwhspr": {
+    "format": "<span size='18000' foreground='#89dceb'>⦿</span>",
+    "on-click": "/usr/lib/hyprwhspr/config/hyprland/hyprwhspr-tray.sh toggle",
+    "tooltip": false
+  }
 }
