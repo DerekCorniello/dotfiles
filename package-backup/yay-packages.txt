@@ -12,6 +12,7 @@ discordo-git-debug
 dotool
 dotool-debug
 getnf
+hypremoji
 hyprwhspr
 kali-themes
 libuvc

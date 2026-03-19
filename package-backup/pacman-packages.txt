@@ -98,6 +98,7 @@ gvfs-smb
 gvfs-wsdd
 hplip
 hunspell-en_us
+hypremoji
 hypridle
 hyprland
 hyprlock
@@ -170,6 +171,7 @@ strace
 sushi
 swaybg
 swaync
+swayosd
 teams-for-linux
 tecla
 thunar
