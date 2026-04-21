@@ -7,10 +7,16 @@ bun-bin
 bun-bin-debug
 checkupdates-with-aur
 ckb-next-debug
+clang17
+clang17-debug
+compiler-rt17
+compiler-rt17-debug
 discordo-git
 discordo-git-debug
 dotool
 dotool-debug
+geocode-glib-2
+geocode-glib-common
 getnf
 hypremoji
 hyprwhspr
@@ -26,7 +32,9 @@ omnisharp-roslyn-debug
 opencode-bin
 pipes.sh
 python-pulsectl
+python-recommonmark
 python-sounddevice
+qt5-location
 qt5-webchannel
 qt5-webchannel-debug
 quick-mouse
@@ -40,6 +48,7 @@ unityhub
 vicinae-bin
 vicinae-bin-debug
 wdisplays-debug
+webkit2gtk
 windsurf
 yay-bin
 yay-bin-debug

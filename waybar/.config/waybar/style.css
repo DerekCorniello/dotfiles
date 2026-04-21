@@ -169,3 +169,7 @@ button:hover {
     color: #89dceb;
     border-bottom: 2px solid #89dceb;
 }
+
+#custom-hyprwhspr:hover {
+    opacity: 1;
+}

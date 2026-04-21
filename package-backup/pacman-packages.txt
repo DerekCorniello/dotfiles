@@ -25,6 +25,7 @@ btop
 btrfs-progs
 checkupdates-with-aur
 chromium
+clang17
 cuda
 cups
 cups-pdf
@@ -89,7 +90,6 @@ gvfs
 gvfs-afc
 gvfs-dnssd
 gvfs-goa
-gvfs-google
 gvfs-gphoto2
 gvfs-mtp
 gvfs-nfs

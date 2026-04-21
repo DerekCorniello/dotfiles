@@ -165,6 +165,9 @@ alias cd='z'
 alias grep="rg"
 eval "$(zoxide init zsh)"
 
+# SonarScanner
+export PATH="/opt/sonar-scanner/bin:$PATH"
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
