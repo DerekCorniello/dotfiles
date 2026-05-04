@@ -15,8 +15,6 @@ discordo-git
 discordo-git-debug
 dotool
 dotool-debug
-geocode-glib-2
-geocode-glib-common
 getnf
 hypremoji
 hyprwhspr
@@ -47,9 +45,10 @@ teams-for-linux-debug
 unityhub
 vicinae-bin
 vicinae-bin-debug
+visual-studio-code-bin
 wdisplays-debug
 webkit2gtk
-windsurf
+webkit2gtk-debug
 yay-bin
 yay-bin-debug
 zen-browser-bin
