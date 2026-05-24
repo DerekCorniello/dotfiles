@@ -48,10 +48,7 @@ local plugins =
     "windwp/nvim-autopairs",
 
     -- Treesitter
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-    },
+    "nvim-treesitter/nvim-treesitter",
     "windwp/nvim-ts-autotag",
 
     -- Git

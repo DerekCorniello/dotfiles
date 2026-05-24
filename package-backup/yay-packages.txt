@@ -1,3 +1,4 @@
+accounts-qml-module
 asusctl
 asusctl-debug
 aurutils
