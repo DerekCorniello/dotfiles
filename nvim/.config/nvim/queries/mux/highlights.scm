@@ -1,1 +1,0 @@
-/home/derekcorn/code/mux-lang/mux-syntax-highlighting/tree-sitter-mux/queries/highlights.scm

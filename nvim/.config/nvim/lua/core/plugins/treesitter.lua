@@ -10,9 +10,6 @@ require 'nvim-treesitter.configs'.setup {
     -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
     auto_install = false,
 
-    -- List of parsers to ignore installing (or "all")
-    ignore_install = { "mux" },
-
     -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
     -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
@@ -22,12 +19,3 @@ require 'nvim-treesitter.configs'.setup {
     },
 }
 
-local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-parser_config.mux = {
-    install_info = {
-        url = '/home/derekcorn/code/mux-lang/mux-syntax-highlighting/tree-sitter-mux',
-        files = { 'src/parser.c' },
-        branch = 'main',
-    },
-    filetype = 'mux',
-}

@@ -1,4 +1,5 @@
 accounts-qml-module
+accounts-qml-module-debug
 asusctl
 asusctl-debug
 aurutils
@@ -27,6 +28,7 @@ llvm17-debug
 llvm17-libs
 logkeys-debug
 nerdfetch
+obs-studio
 omnisharp-roslyn-debug
 opencode-bin
 pipes.sh

@@ -185,6 +185,7 @@ ttf-0xproto-nerd
 ttf-liberation
 udiskie
 unityhub
+uv
 vicinae-bin
 vim
 visual-studio-code-bin
