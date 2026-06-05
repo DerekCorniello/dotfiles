@@ -32,6 +32,7 @@ logkeys-debug
 nerdfetch
 omnisharp-roslyn-debug
 opencode-bin
+opencode-desktop-bin
 pipes.sh
 python-pulsectl
 python-recommonmark

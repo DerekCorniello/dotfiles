@@ -53,6 +53,7 @@ getnf
 gimp
 git
 git-lfs
+github-cli
 gnome-backgrounds
 gnome-calculator
 gnome-calendar
@@ -142,6 +143,7 @@ onefetch
 opam
 openbsd-netcat
 opencode-bin
+opencode-desktop-bin
 orca
 otf-codenewroman-nerd
 papirus-icon-theme
@@ -186,6 +188,7 @@ totem
 tree
 ttf-0xproto-nerd
 ttf-liberation
+ttf-roboto
 udiskie
 unityhub
 uv
