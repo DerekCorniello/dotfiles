@@ -26,6 +26,7 @@ btrfs-progs
 checkupdates-with-aur
 chromium
 clang17
+cloc
 cuda
 cups
 cups-pdf
@@ -159,6 +160,7 @@ riscv64-elf-gcc
 riscv64-elf-newlib
 rpi-imager
 rygel
+scc
 simple-scan
 snapshot
 socat
@@ -179,6 +181,7 @@ thunar-volman
 tig
 tk
 tmux
+tokei
 totem
 tree
 ttf-0xproto-nerd

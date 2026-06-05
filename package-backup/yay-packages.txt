@@ -21,6 +21,8 @@ getnf
 hypremoji
 hyprwhspr
 kali-themes
+libgdata
+libsoup
 libuvc
 libuvc-debug
 llvm17
@@ -28,7 +30,6 @@ llvm17-debug
 llvm17-libs
 logkeys-debug
 nerdfetch
-obs-studio
 omnisharp-roslyn-debug
 opencode-bin
 pipes.sh
@@ -36,9 +37,12 @@ python-pulsectl
 python-recommonmark
 python-sounddevice
 qt5-location
+qt5-location-debug
 qt5-webchannel
 qt5-webchannel-debug
 quick-mouse
+scc
+scc-debug
 sonar-scanner
 stockfish
 stockfish-debug
