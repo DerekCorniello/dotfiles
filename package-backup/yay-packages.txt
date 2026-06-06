@@ -47,6 +47,7 @@ scc-debug
 sonar-scanner
 stockfish
 stockfish-debug
+t3code-bin
 teams-debug
 teams-for-linux
 teams-for-linux-debug

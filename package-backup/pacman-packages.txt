@@ -176,6 +176,7 @@ sushi
 swaybg
 swaync
 swayosd
+t3code-bin
 teams-for-linux
 tecla
 thunar
