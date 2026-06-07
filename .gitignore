@@ -1,2 +1,3 @@
 .env
-hypr/hymission-build/build/
+hypr/custom-hymission/build/
+hypr/custom-hymission/.git/
