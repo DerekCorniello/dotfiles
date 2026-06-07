@@ -196,7 +196,7 @@ uv
 vicinae-bin
 vim
 visual-studio-code-bin
-waybar
+waybar-git
 waydroid
 wdisplays
 webkit2gtk

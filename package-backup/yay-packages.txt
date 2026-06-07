@@ -55,6 +55,8 @@ unityhub
 vicinae-bin
 vicinae-bin-debug
 visual-studio-code-bin
+waybar-git
+waybar-git-debug
 wdisplays-debug
 webkit2gtk
 webkit2gtk-debug

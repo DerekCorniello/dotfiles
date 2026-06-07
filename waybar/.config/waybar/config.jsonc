@@ -112,7 +112,8 @@
   },
   "hyprland/workspaces": {
     "all-outputs": true,
-    "format": "{name}"
+    "format": "{name}",
+    "on-click": "activate"
   },
 
   "custom/hyprpicker": {
