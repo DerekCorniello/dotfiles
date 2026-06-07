@@ -51,4 +51,11 @@ sudo pacman -S --needed --noconfirm networkmanager blueman
 echo "Stowing dotfiles..."
 stow */
 
+echo "Setting up hymission plugin..."
+if command -v hyprpm &>/dev/null; then
+    hyprpm add "$DOTFILES_DIR/hypr/hymission-build"
+    hyprpm enable hymission
+    hyprpm reload
+fi
+
 echo "Setup complete! Please restart your session."
