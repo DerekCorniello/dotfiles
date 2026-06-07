@@ -45,3 +45,9 @@ hl.window_rule({
     },
     size = { 307, 340 },
 })
+
+hl.window_rule({
+    name  = "swaync-float",
+    match = { title = "swaync" },
+    float = true,
+})

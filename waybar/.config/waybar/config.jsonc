@@ -14,6 +14,7 @@
     "custom/hyprwhspr",
     "network",
     "bluetooth",
+    "custom/swaync",
     "pulseaudio",
     "backlight",
     "battery",
@@ -125,6 +126,12 @@
   "custom/hyprwhspr": {
     "format": "<span size='200%' rise='-6000' foreground='#89dceb'>⦿</span>",
     "on-click": "/usr/lib/hyprwhspr/config/hyprland/hyprwhspr-tray.sh toggle",
+    "tooltip": false
+  },
+
+  "custom/swaync": {
+    "format": "<span size='150%' rise='-6000' foreground='#cba6f7'>\uf0f3</span>",
+    "on-click": "swaync-client -t",
     "tooltip": false
   }
 }
