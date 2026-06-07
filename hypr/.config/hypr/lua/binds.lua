@@ -90,10 +90,12 @@ hl.bind(
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("hypremoji"))
 
 -- Mission Control-style overview (keyboard fallbacks)
-hl.bind(mainMod .. " + TAB", hl.plugin.hymission.toggle)
-hl.bind(mainMod .. " + A", function()
-    hl.plugin.hymission.toggle("forceall")
+pcall(function()
+    hl.bind(mainMod .. " + TAB", hl.plugin.hymission.toggle)
+    hl.bind(mainMod .. " + A", function()
+        hl.plugin.hymission.toggle("forceall")
+    end)
+    hl.bind(mainMod .. " + Escape", hl.plugin.hymission.close)
 end)
-hl.bind(mainMod .. " + Escape", hl.plugin.hymission.close)
 
 
