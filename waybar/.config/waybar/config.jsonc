@@ -88,7 +88,7 @@
   "custom/pacman": {
     "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
     "interval": 7200,
-    "exec": "echo $(( $(checkupdates | wc -l) + $(yay -Qu --quiet | wc -l) ))",
+    "exec": "echo $(yay -Qu --quiet | wc -l)",
     "on-click": "kitty sh -c 'yay -Syu --noconfirm; ~/dotfiles/package-backup/backup-packages.sh; echo \"Done. Press Enter to close...\"; read; pkill -SIGRTMIN+8 waybar'",
     "signal": 8,
     "tooltip": false
@@ -130,8 +130,10 @@
   },
 
   "custom/swaync": {
-    "format": "<span size='150%' rise='-6000' foreground='#cba6f7'>\uf0f3</span>",
+    "format": "<span size='150%' rise='-6000' foreground='#cba6f7'>\uf0f3</span><span rise='-4000'> {}</span>",
+    "exec": "~/.config/waybar/scripts/swaync.sh",
     "on-click": "swaync-client -t",
+    "return-type": "json",
     "tooltip": false
   }
 }
