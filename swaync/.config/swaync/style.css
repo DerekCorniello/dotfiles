@@ -23,10 +23,6 @@ window, notificationwindow, blankwindow {
   padding: 10px 12px;
 }
 
-.notification-row .notification:hover {
-  background: var(--hover);
-}
-
 .notification .notification-content {
   background: transparent;
 }
