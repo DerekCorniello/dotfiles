@@ -1,5 +1,3 @@
 #!/bin/bash
-# Wrapper: uses the title as app-name so swaync groups by title.
-# Passes everything else through to the real notify-send unchanged.
-
-/usr/bin/notify-send -a "$1" "$@"
+# Wrapper: uses fixed app-name for swaync grouping, passes all args to notify-send.
+/usr/bin/notify-send -a "notify-send" "$@"
