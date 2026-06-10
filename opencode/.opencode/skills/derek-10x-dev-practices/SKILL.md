@@ -36,6 +36,9 @@ Optimize for readability, maintainability, correctness, and simplicity before pe
 * Avoid large unrelated refactors while implementing a feature.
 * Prefer explicit error handling over hidden failures or silent fallbacks.
 * Never ignore pre-existing issues, warnings, or errors without explicit approval.
+* Always add ci/cd pipelines, linters, formatters, and tests when setting up a new repository or project.
+* Prefer local pre-commit hooks for linters, formatters, and tests when practical, and longer-running checks in ci/cd pipelines.
+* Always run linters, formatters, and tests.
 
 ### Comments
 
