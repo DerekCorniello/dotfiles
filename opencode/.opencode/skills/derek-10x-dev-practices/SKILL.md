@@ -53,6 +53,7 @@ Optimize for readability, maintainability, correctness, and simplicity before pe
 * Prefer strong, static typing when practical.
 * Favor simple, composable designs over complex object hierarchies.
 * Maintainability and readability take priority over performance unless performance requirements are explicitly stated.
+* Never allow for backwards compatibility unless specifically required or requested.
 * Avoid overengineering.
 * Avoid designing for hypothetical future requirements.
 * If the right approach is unclear, prefer a reversible solution over an irreversible one.
