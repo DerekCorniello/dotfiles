@@ -137,7 +137,7 @@ hl.gesture({
     action = function() 
         hl.dispatch(
             hl.dsp.focus({
-                workspace = "+1"
+                workspace = "m+1"
             })
         )
     end
@@ -149,7 +149,7 @@ hl.gesture({
     action = function() 
         hl.dispatch(
             hl.dsp.focus({
-                workspace = "-1"
+                workspace = "m-1"
             })
         )
     end
