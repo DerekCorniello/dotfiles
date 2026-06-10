@@ -11,6 +11,10 @@ Code is read far more often than it is written.
 
 Optimize for readability, maintainability, correctness, and simplicity before performance, abstraction, or cleverness.
 
+Ensure you understand the problem, requirements, constraints, and goals before writing code. Ask clarifying questions when necessary.
+
+Ensure you address all of the problems/feedback that the user sends you.
+
 ---
 
 ## Communication
