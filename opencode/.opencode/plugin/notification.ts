@@ -11,6 +11,7 @@ export const NotificationPlugin: Plugin = async ({
   const currentPid = process.pid;
   const busySessions = new Set<string>();
   const lastAssistantTextBySession = new Map<string, string>();
+  const lastNotificationSent = new Map<string, number>();
 
   const summarizeAssistantText = (value: string, maxChars: number): string => {
     const oneLine = value.replace(/\s+/g, " ").trim();
@@ -103,7 +104,12 @@ export const NotificationPlugin: Plugin = async ({
 
         const { permission, metadata } = event.properties;
         const detail = metadata?.filepath ?? permission;
-        await $`notify-send "opencode" "Permission required: ${detail}"`;
+        const now = Date.now();
+        const last = lastNotificationSent.get(detail) ?? 0;
+        if (now - last >= 2000) {
+          lastNotificationSent.set(detail, now);
+          await $`notify-send -h string:x-canonical-private-synchronous:opencode "opencode" "Permission required: ${detail}"`;
+        }
         return;
       }
 
@@ -117,7 +123,12 @@ export const NotificationPlugin: Plugin = async ({
 
         const preview =
           lastAssistantTextBySession.get(sessionId) ?? "Agent finished";
-        await $`notify-send "opencode" "${preview}"`;
+        const now = Date.now();
+        const last = lastNotificationSent.get(preview) ?? 0;
+        if (now - last >= 2000) {
+          lastNotificationSent.set(preview, now);
+          await $`notify-send -h string:x-canonical-private-synchronous:opencode "opencode" "${preview}"`;
+        }
       }
     },
   };

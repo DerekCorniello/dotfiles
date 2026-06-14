@@ -1,3 +1,42 @@
 #!/bin/bash
 # Wrapper: uses fixed app-name for swaync grouping, passes all args to notify-send.
+# When clicked, focuses the terminal that sent the notification.
+
+if command -v hyprctl &>/dev/null; then
+  # Collect all window PIDs from Hyprland clients
+  window_pids=$(hyprctl clients -j 2>/dev/null | command python3 -c "
+import sys, json
+clients = json.load(sys.stdin)
+for c in clients:
+    print(c['pid'])
+" 2>/dev/null)
+
+  if [ -n "$window_pids" ]; then
+    # Walk up process tree from $$ until we find an ancestor that has a window
+    cursor=$$
+    depth=0
+    target=""
+    while [ $depth -lt 32 ]; do
+      ppid=$(ps -o ppid= -p "$cursor" 2>/dev/null | tr -d ' ')
+      [ -z "$ppid" ] || [ "$ppid" -le 1 ] && break
+      cursor=$ppid
+      if echo "$window_pids" | grep -xq "$cursor"; then
+        target=$cursor
+        break
+      fi
+      depth=$((depth + 1))
+    done
+
+    if [ -n "$target" ]; then
+      {
+        /usr/bin/notify-send -a "notify-send" --action=default=Focus "$@"
+        if [ $? -eq 0 ]; then
+          hyprctl dispatch "hl.dsp.focus({ window = \"pid:$target\" })"
+        fi
+      } &>/dev/null &
+      exit 0
+    fi
+  fi
+fi
+
 /usr/bin/notify-send -a "notify-send" "$@"

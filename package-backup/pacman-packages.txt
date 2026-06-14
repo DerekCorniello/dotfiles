@@ -39,6 +39,7 @@ docker-compose
 dosfstools
 dotnet-sdk
 dotool
+dunst
 efibootmgr
 epiphany
 evince
@@ -46,6 +47,7 @@ evtest
 fastfetch
 fd
 firefox
+fprintd
 fzf
 gdb
 gdm
