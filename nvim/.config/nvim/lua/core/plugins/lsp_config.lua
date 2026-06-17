@@ -121,6 +121,21 @@ local function setup_servers()
                     on_attach = on_attach,
                     capabilities = capabilities
                 })
+            elseif server == "clangd" then
+               lspconfig.clangd.setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                      cmd = {
+                        "clangd",
+                        "--compile-commands-dir=build", -- or wherever UE outputs it
+                        "--background-index",
+                        "--clang-tidy",
+                        "--completion-style=detailed",
+                        "--header-insertion=never",
+                      },
+                    filetypes = { "c", "cpp", "objc", "objcpp" },
+                    root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+                })
             elseif server == "rust_analyzer" then
                 -- dont do anything, theres rustaceanvim for that
             else

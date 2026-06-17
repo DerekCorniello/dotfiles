@@ -1,19 +1,19 @@
 -- Window rules, including those inlined from ~/.config/hypremoji/hypremoji.conf.
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 
--- Pseudotile code editors
-hl.window_rule({
-    name   = "pseudo-code",
-    match  = { class = "^(code|Code|jetbrains-.*)$" },
-    pseudo = true,
-})
+-- Pseudotile code editors (disabled: interferes with VSCode fullscreen)
+-- hl.window_rule({
+--     name   = "pseudo-code",
+--     match  = { class = "^(code|Code|jetbrains-.*)$" },
+--     pseudo = true,
+-- })
 
--- Suppress maximize events from all apps
-hl.window_rule({
-    name            = "suppress-maximize",
-    match           = { class = ".*" },
-    suppress_event  = "maximize",
-})
+-- Suppress maximize events from all apps (disabled: breaks VSCode fullscreen)
+-- hl.window_rule({
+--     name            = "suppress-maximize",
+--     match           = { class = ".*" },
+--     suppress_event  = "maximize",
+-- })
 
 -- Fix XWayland floating/no focus
 hl.window_rule({

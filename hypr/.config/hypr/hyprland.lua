@@ -100,7 +100,7 @@ hl.config({
     },
 })
 
--- hymission plugin configuration (Mission Control-style overview).
+--[[ hymission plugin configuration (Mission Control-style overview).
 pcall(function()
     hl.config({
         plugin = {
@@ -130,6 +130,7 @@ pcall(function()
         action = "toggle",
     })
 end)
+]]
 
 -- Workspace switching via hyprctl dispatch (instant, no animation)
 hl.gesture({

@@ -11,9 +11,11 @@ local function run(cmd)
 end
 
 hl.on("hyprland.start", function()
-    -- Load hyprpm plugins first (hymission needs this before config runs).
+    --[[ Load hyprpm plugins first (hymission needs this before config runs).
     run("hyprpm reload")
+    ]]
 
+    run("systemctl --user start graphical-session.target")
     run("waybar")
     run("swaync")
     run("swayosd-server --top-margin 0.95")

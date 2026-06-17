@@ -89,7 +89,7 @@ hl.bind(
 -- HyprEmoji (bind previously sourced from ~/.config/hypremoji/hypremoji.conf)
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("hypremoji"))
 
--- Mission Control-style overview (keyboard fallbacks)
+--[[ Mission Control-style overview (keyboard fallbacks)
 pcall(function()
     hl.bind(mainMod .. " + TAB", hl.plugin.hymission.toggle)
     hl.bind(mainMod .. " + A", function()
@@ -97,5 +97,6 @@ pcall(function()
     end)
     hl.bind(mainMod .. " + Escape", hl.plugin.hymission.close)
 end)
+]]
 
 
