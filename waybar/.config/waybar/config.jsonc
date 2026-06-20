@@ -88,7 +88,7 @@
   "custom/pacman": {
     "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
     "interval": 7200,
-    "exec": "echo $(yay -Qu --quiet | wc -l)",
+    "exec": "echo $(( $(checkupdates 2>/dev/null | wc -l) + $(yay -Qua --quiet 2>/dev/null | wc -l) ))",
     "on-click": "kitty sh -c 'yay -Syu --noconfirm; ~/dotfiles/package-backup/backup-packages.sh; echo \"Done. Press Enter to close...\"; read; pkill -SIGRTMIN+8 waybar'",
     "signal": 8,
     "tooltip": false
