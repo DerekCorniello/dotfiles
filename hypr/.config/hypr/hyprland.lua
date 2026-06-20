@@ -69,8 +69,8 @@ hl.config({
 
     misc = {
         force_default_wallpaper = 0,
-        disable_hyprland_logo  = true,
-        focus_on_activate = true,
+        disable_hyprland_logo   = true,
+        focus_on_activate       = true,
     },
 })
 
@@ -100,7 +100,7 @@ hl.config({
     },
 })
 
---[[ hymission plugin configuration (Mission Control-style overview).
+-- hymission plugin configuration (Mission Control-style overview).
 pcall(function()
     hl.config({
         plugin = {
@@ -130,13 +130,12 @@ pcall(function()
         action = "toggle",
     })
 end)
-]]
 
 -- Workspace switching via hyprctl dispatch (instant, no animation)
 hl.gesture({
     fingers = 3,
     direction = "right",
-    action = function() 
+    action = function()
         hl.dispatch(
             hl.dsp.focus({
                 workspace = "m+1"
@@ -148,7 +147,7 @@ hl.gesture({
 hl.gesture({
     fingers = 3,
     direction = "left",
-    action = function() 
+    action = function()
         hl.dispatch(
             hl.dsp.focus({
                 workspace = "m-1"
