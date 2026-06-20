@@ -19,7 +19,7 @@ def resolve(path: str):
         return f"https://github.com/{GITHUB_USER}"
 
     if parts[0] == "prs":
-        return f"https://github.com/{GITHUB_USER}/{parts[0]}"
+        return f"https://github.com/pulls?q=is%3Apr+author%3A{GITHUB_USER}"
 
     repo = parts[0]
     real = REPO_ALIASES.get(repo, repo)
