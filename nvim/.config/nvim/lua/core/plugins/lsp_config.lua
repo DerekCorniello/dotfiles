@@ -1,24 +1,20 @@
-local lspconfig = require('lspconfig')
-local util = require('lspconfig.util')
-
--- Setup mason with UI icons
+-- Mason for installing LSP servers (mason-lspconfig is kept for get_installed_servers only)
 require("mason").setup({
     ui = {
         icons = {
-            package_installed = "",
-            package_pending = "",
-            package_uninstalled = "",
+            package_installed = "",
+            package_pending = "",
+            package_uninstalled = "",
         },
     }
 })
 
--- Setup mason-lspconfig without automatic enabling to avoid double servers
 require("mason-lspconfig").setup({
     automatic_enable = false,
     ensure_installed = { "lua_ls", "pylsp", "ts_ls", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd" }
 })
 
--- Custom on_attach for all LSPs
+-- Shared on_attach for all LSPs
 local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -43,17 +39,25 @@ local on_attach = function(client, bufnr)
     keymap('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 end
 
--- Setup capabilities with snippet and experimental file watching support
+-- Capabilities with snippet and experimental file watching support
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.workspace = capabilities.workspace or {}
 capabilities.workspace.didChangeWatchedFiles = { dynamicRegistration = true }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Manual lua_ls setup (overrides mason-lspconfig automatic setup)
-lspconfig.lua_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+-- Configure a server by name with the shared base options
+local function configure(name, extra)
+    local opts = vim.tbl_deep_extend("force", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }, extra or {})
+    vim.lsp.config(name, opts)
+    vim.lsp.enable(name)
+end
+
+-- lua_ls: manual config (overrides bundled defaults)
+configure("lua_ls", {
     settings = {
         Lua = {
             runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
@@ -62,99 +66,93 @@ lspconfig.lua_ls.setup({
             completion = { callSnippet = 'Replace' },
         },
     },
-    handlers = {
-        ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
-            config = config or {}
-            config.virtual_text = config.virtual_text or {
-                severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.HINT },
-                severity_sort = true,
-            }
-            if vim.diagnostic and vim.diagnostic.on_publish_diagnostics then
-                vim.diagnostic.on_publish_diagnostics(_, result, ctx, config)
-            end
-        end,
+})
+
+-- emmet_ls: not in bundled configs, register it explicitly
+vim.lsp.config("emmet_ls", {
+    cmd = { "emmet_ls", "--stdio" },
+    filetypes = {
+        "html", "css", "scss", "javascriptreact", "typescriptreact", "haml", "xml",
+        "xsl", "pug", "slim", "sass", "stylus", "less", "sss", "hbs", "handlebars",
+    },
+    root_dir = function(bufnr, on_dir)
+        on_dir(vim.fn.cwd())
+    end,
+    settings = {},
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+vim.lsp.enable("emmet_ls")
+
+-- gopls: extra settings + root_dir
+configure("gopls", {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = function(bufnr, on_dir)
+        on_dir(vim.fs.root(bufnr, { "go.work", "go.mod", ".git" }))
+    end,
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = { unusedparams = true },
+        },
     },
 })
 
--- Setup other servers after Mason installs
+-- ocamllsp
+configure("ocamllsp", {
+    cmd = { "ocamllsp" },
+    filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+    root_dir = function(bufnr, on_dir)
+        on_dir(vim.fs.root(bufnr, { "*.opam", "esy.json", "package.json", ".git", "dune-project", "dune-workspace" }))
+    end,
+})
+
+-- clangd
+configure("clangd", {
+    cmd = {
+        "clangd",
+        "--compile-commands-dir=.",
+        "--background-index",
+        "--background-index-priority=normal",
+        "--completion-style=detailed",
+        "--limit-results=5000",
+        "--limit-references=50000",
+        "--ranking-model=decision_forest",
+    },
+    filetypes = { "c", "cpp", "objc", "objcpp" },
+    root_dir = function(bufnr, on_dir)
+        on_dir(vim.fs.root(bufnr, { "compile_commands.json", "compile_flags.txt", ".git" }))
+    end,
+    init_options = { fallbackFlags = {} },
+})
+
+-- rust_analyzer: handled by rustaceanvim, skip
+
+-- Wire up any other mason-installed servers after Mason installs them
 local function setup_servers()
-    local installed = require('mason-lspconfig').get_installed_servers()
-    for _, server in ipairs(installed) do
-        if server ~= "lua_ls" then -- skip lua_ls, manually configured above
-            if server == "gopls" then
-                lspconfig.gopls.setup {
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                    cmd = { "gopls" },
-                    filetypes = { "go", "gomod", "gowork", "gotmpl" },
-                    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-                    settings = {
-                        gopls = {
-                            completeUnimported = true,
-                            usePlaceholders = true,
-                            analyses = { unusedparams = true },
-                        }
-                    }
-                }
-            elseif server == "emmet_ls" then
-                local configs = require("lspconfig.configs")
-                if not configs.emmet_ls then
-                    configs.emmet_ls = {
-                        default_config = {
-                            cmd = { 'emmet_ls', '--stdio' },
-                            filetypes = {
-                                'html', 'css', 'scss', 'javascriptreact', 'typescriptreact', 'haml', 'xml',
-                                'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss', 'hbs', 'handlebars',
-                            },
-                            root_dir = function() return vim.loop.cwd() end,
-                            settings = {},
-                        },
-                    }
-                end
-                lspconfig.emmet_ls.setup({ on_attach = on_attach, capabilities = capabilities })
-            elseif server == "ocamllsp" then
-                lspconfig.ocamllsp.setup({
-                    cmd = { "ocamllsp" },
-                    filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
-                    root_dir = lspconfig.util.root_pattern("*.opam", "esy.json", "package.json", ".git", "dune-project",
-                        "dune-workspace"),
-                    on_attach = on_attach,
-                    capabilities = capabilities
-                })
-            elseif server == "clangd" then
-               lspconfig.clangd.setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                      cmd = {
-                        "clangd",
-                        "--compile-commands-dir=build", -- or wherever UE outputs it
-                        "--background-index",
-                        "--clang-tidy",
-                        "--completion-style=detailed",
-                        "--header-insertion=never",
-                      },
-                    filetypes = { "c", "cpp", "objc", "objcpp" },
-                    root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
-                })
-            elseif server == "rust_analyzer" then
-                -- dont do anything, theres rustaceanvim for that
-            else
-                -- default server setup for others
-                lspconfig[server].setup({
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                })
-            end
+    for _, server in ipairs(require('mason-lspconfig').get_installed_servers()) do
+        if server ~= "lua_ls"
+            and server ~= "gopls"
+            and server ~= "emmet_ls"
+            and server ~= "ocamllsp"
+            and server ~= "clangd"
+            and server ~= "rust_analyzer"
+        then
+            vim.lsp.config(server, {
+                on_attach = on_attach,
+                capabilities = capabilities,
+            })
+            vim.lsp.enable(server)
         end
     end
 end
 
--- Setup after Mason installs servers
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspInstallPost',
     callback = setup_servers,
     once = true,
 })
 
--- Run setup on startup
 setup_servers()

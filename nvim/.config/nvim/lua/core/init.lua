@@ -48,7 +48,14 @@ local plugins =
     "windwp/nvim-autopairs",
 
     -- Treesitter
-    "nvim-treesitter/nvim-treesitter",
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        lazy = false,
+        config = function()
+            require("core.plugins.treesitter")
+        end,
+    },
     "windwp/nvim-ts-autotag",
 
     -- Git
@@ -130,6 +137,20 @@ local plugins =
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {}, -- pass setup config here
         event = "VeryLazy",
+    },
+    {
+        "derekcorn/unreal-sense.nvim",
+        dir = "~/code/unreal-sense.nvim",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "L3MON4D3/LuaSnip",
+        },
+        cmd = { "UESetup", "UEBuild", "UEClean", "UERegen" },
+        config = function()
+            require("unreal-sense").setup({
+                engine_path = "/home/derekcorn/dev/UnrealEngine",
+            })
+        end,
     }
 }
 require("lazy").setup(plugins)
