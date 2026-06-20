@@ -149,3 +149,5 @@
 	clean = git-lfs clean -- %f
 [pull]
 	ff = only
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
