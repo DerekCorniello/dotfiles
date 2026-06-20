@@ -9,12 +9,12 @@ undotree.setup({
     winblend = 30,
   },
   keymaps = {
-    ['j'] = "move_next",
-    ['k'] = "move_prev",
-    ['gj'] = "move2parent",
-    ['<cr>'] = "action_enter",
-    ['p'] = "enter_diffbuf",
-    ['q'] = "quit",
+    move_next = 'j',
+    move_prev = 'k',
+    move2parent = 'gj',
+    action_enter = '<cr>',
+    enter_diffbuf = 'p',
+    quit = 'q',
   },
 })
 
