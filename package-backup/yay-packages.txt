@@ -54,7 +54,6 @@ teams-for-linux-debug
 unityhub
 vicinae-bin
 vicinae-bin-debug
-visual-studio-code-bin
 waybar-git
 waybar-git-debug
 wdisplays-debug

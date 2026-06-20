@@ -88,6 +88,7 @@ gnome-user-share
 gnome-weather
 gnuplot
 godot
+gparted
 grilo-plugins
 grub
 gvfs
@@ -197,7 +198,6 @@ unityhub
 uv
 vicinae-bin
 vim
-visual-studio-code-bin
 waybar-git
 waydroid
 wdisplays
