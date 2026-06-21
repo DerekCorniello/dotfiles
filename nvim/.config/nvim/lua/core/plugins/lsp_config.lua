@@ -15,8 +15,8 @@ require("mason-lspconfig").setup({
 })
 
 -- Shared on_attach for all LSPs
-local on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+local on_attach = function(_, bufnr)
+    vim.api.nvim_set_option_value("number", true, { buf = bufnr })
 
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     local keymap = vim.keymap.set
@@ -34,8 +34,12 @@ local on_attach = function(client, bufnr)
     keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     keymap('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
     keymap('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    keymap('n', '[d', vim.diagnostic.goto_prev, bufopts)
-    keymap('n', ']d', vim.diagnostic.goto_next, bufopts)
+    keymap('n', '[d', function()
+        vim.diagnostic.jump({ count = -1 })
+    end, bufopts)
+    keymap('n', ']d', function()
+        vim.diagnostic.jump({ count = 1 })
+    end, bufopts)
     keymap('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 end
 
@@ -75,7 +79,7 @@ vim.lsp.config("emmet_ls", {
         "html", "css", "scss", "javascriptreact", "typescriptreact", "haml", "xml",
         "xsl", "pug", "slim", "sass", "stylus", "less", "sss", "hbs", "handlebars",
     },
-    root_dir = function(bufnr, on_dir)
+    root_dir = function(_, on_dir)
         on_dir(vim.fn.cwd())
     end,
     settings = {},
@@ -110,10 +114,23 @@ configure("ocamllsp", {
 })
 
 -- clangd
+local function resolve_clangd()
+    local mason_clangd = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin", "clangd")
+    if vim.uv.fs_stat(mason_clangd) then
+        return mason_clangd
+    end
+
+    local system_clangd = vim.fn.exepath("clangd")
+    if system_clangd ~= "" then
+        return system_clangd
+    end
+
+    return "clangd"
+end
+
 configure("clangd", {
     cmd = {
-        "clangd",
-        "--compile-commands-dir=.",
+        resolve_clangd(),
         "--background-index",
         "--background-index-priority=normal",
         "--completion-style=detailed",
