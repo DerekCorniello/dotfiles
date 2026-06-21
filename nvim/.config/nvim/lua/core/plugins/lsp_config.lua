@@ -16,8 +16,6 @@ require("mason-lspconfig").setup({
 
 -- Shared on_attach for all LSPs
 local on_attach = function(_, bufnr)
-    vim.api.nvim_set_option_value("number", true, { buf = bufnr })
-
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
     local keymap = vim.keymap.set
 
