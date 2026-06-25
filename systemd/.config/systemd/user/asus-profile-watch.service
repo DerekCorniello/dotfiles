@@ -1,0 +1,14 @@
+[Unit]
+Description=Notify and sync AC/Battery profile on asusd PlatformProfile change
+PartOf=graphical-session.target
+Requires=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/dotfiles/scripts/asus_profile_watch.sh
+Slice=session.slice
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
