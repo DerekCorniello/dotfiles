@@ -25,6 +25,7 @@ btop
 btrfs-progs
 checkupdates-with-aur
 chromium
+clang
 clang17
 cloc
 cuda
@@ -205,6 +206,7 @@ webkit2gtk
 wireshark-qt
 wlroots0.18
 wofi
+wrangler
 xclip
 xdg-desktop-portal-gnome
 xdg-desktop-portal-hyprland

@@ -5,143 +5,43 @@
 	defaultBranch = main
 [core]
 	editor = nvim
+    pager = delta
+[delta]
+    side-by-side = true
+    navigate = true
+[alias]
+    refresh = !git checkout main && fetch --all --prune
+    sweep = !git branch --merged | grep -v '\\*' | grep -v 'main' | grep -v 'master' | xargs -r git branch -d
+    last = log -1 HEAD
+    tree = log --graph --all --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset'
+    oops = commit --amend --no-edit
+
+    # Automatically detects main or master and updates it without checking it out
+    refresh = "!f() { \
+        bg=$(git rev-parse --verify --quiet main master | head -n 1); \
+        if [ -n \"$bg\" ]; then \
+            echo \"Updating local branch '$bg' in the background...\"; \
+            git fetch --all --prune && git fetch origin \"$bg\":\"$bg\"; \
+        else \
+            echo \"Could not find main or master branch. Just fetching/pruning...\"; \
+            git fetch --all --prune; \
+        fi \
+    }; f"
+
+    # Automatically finds the closest parent/relative branch and diffs it
+    review = "!f() { \
+        parent=$(git show-branch --no-name --topo-order $(git branch --list | grep -v '^*' | sed 's/^[ *]*//') HEAD | grep '\\*' | grep -v \"\\[$(git branch --show-current)\\]\" | head -n1 | sed -E 's/^.*\\[([^\\]^~]+).*$/\\1/'); \
+        if [ -n \"$parent\" ]; then \
+            echo \"Comparing current branch to closest relative: $parent\"; \
+            git diff \"$parent\"...HEAD; \
+        else \
+            echo \"No relative branch found. Defaulting to main/master.\"; \
+            bg=$(git rev-parse --verify --quiet main master | head -n 1); \
+            git diff \"$bg\"...HEAD; \
+        fi \
+    }; f"
 [safe]
-	directory = /mnt/usb/github-backups/8BitBeats
-	directory = /mnt/usb/github-backups/advent-of-code-2024
-	directory = /mnt/usb/github-backups/AmandaLynnDashboard
-	directory = /mnt/usb/github-backups/Blackjack
-	directory = /mnt/usb/github-backups/College_ENED1100
-	directory = /mnt/usb/github-backups/College_ENED1120
-	directory = /mnt/usb/github-backups/CS4065-Discussion-Board
-	directory = /mnt/usb/github-backups/DEMO_BallBounce
-	directory = /mnt/usb/github-backups/DEMO_PlaneSimulator
-	directory = /mnt/usb/github-backups/DerekCorniello
-	directory = /mnt/usb/github-backups/DerekCorniello.github.io
-	directory = /mnt/usb/github-backups/dotfiles
-	directory = /mnt/usb/github-backups/Game_BilliardsBonanza
-	directory = /mnt/usb/github-backups/gitcmd
-	directory = /mnt/usb/github-backups/HaskellAssignment
-	directory = /mnt/usb/github-backups/IntrotoComputerScience_Assignments
-	directory = /mnt/usb/github-backups/medava
-	directory = /mnt/usb/github-backups/Minesweeper
-	directory = /mnt/usb/github-backups/NeoVim-Setup
-	directory = /mnt/usb/github-backups/pip-req-valid
-	directory = /mnt/usb/github-backups/pomodoro-app
-	directory = /mnt/usb/github-backups/stimpl
-	directory = /mnt/usb/github-backups/TicTacToe-with-AI
-	directory = /mnt/usb/github-backups/waph-corniedj
-	directory = /mnt/usb/github-backups/.github
-	directory = /mnt/usb/github-backups/DevBits
-	directory = /mnt/usb/github-backups/AI_Principles
-	directory = /mnt/usb/github-backups/Resume2Web
-	directory = /mnt/usb/github-backups/school
-	directory = /mnt/usb/github-backups/Database-Team-project
-	directory = /mnt/usb/github-backups/technical-assessment-deadline-9-23-24-DerekCorniello
-	directory = /mnt/usb/github-backups/technical-project-deadline-10-14-23-DerekCorniello
-	directory = /mnt/usb/github-backups/waph-team01-sm24.github.io
-	directory = /mnt/usb/github-backups/waph-teamproject
-	directory = /mnt/usb/github-backups/8BitBeats
-	directory = /mnt/usb/github-backups/advent-of-code-2024
-	directory = /mnt/usb/github-backups/AmandaLynnDashboard
-	directory = /mnt/usb/github-backups/Blackjack
-	directory = /mnt/usb/github-backups/College_ENED1100
-	directory = /mnt/usb/github-backups/College_ENED1120
-	directory = /mnt/usb/github-backups/CS4065-Discussion-Board
-	directory = /mnt/usb/github-backups/DEMO_BallBounce
-	directory = /mnt/usb/github-backups/DEMO_PlaneSimulator
-	directory = /mnt/usb/github-backups/DerekCorniello
-	directory = /mnt/usb/github-backups/DerekCorniello.github.io
-	directory = /mnt/usb/github-backups/dotfiles
-	directory = /mnt/usb/github-backups/Game_BilliardsBonanza
-	directory = /mnt/usb/github-backups/gitcmd
-	directory = /mnt/usb/github-backups/HaskellAssignment
-	directory = /mnt/usb/github-backups/IntrotoComputerScience_Assignments
-	directory = /mnt/usb/github-backups/medava
-	directory = /mnt/usb/github-backups/Minesweeper
-	directory = /mnt/usb/github-backups/NeoVim-Setup
-	directory = /mnt/usb/github-backups/pip-req-valid
-	directory = /mnt/usb/github-backups/pomodoro-app
-	directory = /mnt/usb/github-backups/stimpl
-	directory = /mnt/usb/github-backups/TicTacToe-with-AI
-	directory = /mnt/usb/github-backups/waph-corniedj
-	directory = /mnt/usb/github-backups/.github
-	directory = /mnt/usb/github-backups/DevBits
-	directory = /mnt/usb/github-backups/AI_Principles
-	directory = /mnt/usb/github-backups/Resume2Web
-	directory = /mnt/usb/github-backups/school
-	directory = /mnt/usb/github-backups/Database-Team-project
-	directory = /mnt/usb/github-backups/technical-assessment-deadline-9-23-24-DerekCorniello
-	directory = /mnt/usb/github-backups/technical-project-deadline-10-14-23-DerekCorniello
-	directory = /mnt/usb/github-backups/waph-team01-sm24.github.io
-	directory = /mnt/usb/github-backups/waph-teamproject
-	directory = /mnt/usb/github-backups/8BitBeats
-	directory = /mnt/usb/github-backups/advent-of-code-2024
-	directory = /mnt/usb/github-backups/AmandaLynnDashboard
-	directory = /mnt/usb/github-backups/Blackjack
-	directory = /mnt/usb/github-backups/College_ENED1100
-	directory = /mnt/usb/github-backups/College_ENED1120
-	directory = /mnt/usb/github-backups/CS4065-Discussion-Board
-	directory = /mnt/usb/github-backups/DEMO_BallBounce
-	directory = /mnt/usb/github-backups/DEMO_PlaneSimulator
-	directory = /mnt/usb/github-backups/DerekCorniello
-	directory = /mnt/usb/github-backups/DerekCorniello.github.io
-	directory = /mnt/usb/github-backups/dotfiles
-	directory = /mnt/usb/github-backups/Game_BilliardsBonanza
-	directory = /mnt/usb/github-backups/gitcmd
-	directory = /mnt/usb/github-backups/HaskellAssignment
-	directory = /mnt/usb/github-backups/IntrotoComputerScience_Assignments
-	directory = /mnt/usb/github-backups/medava
-	directory = /mnt/usb/github-backups/Minesweeper
-	directory = /mnt/usb/github-backups/NeoVim-Setup
-	directory = /mnt/usb/github-backups/pip-req-valid
-	directory = /mnt/usb/github-backups/pomodoro-app
-	directory = /mnt/usb/github-backups/stimpl
-	directory = /mnt/usb/github-backups/TicTacToe-with-AI
-	directory = /mnt/usb/github-backups/waph-corniedj
-	directory = /mnt/usb/github-backups/.github
-	directory = /mnt/usb/github-backups/DevBits
-	directory = /mnt/usb/github-backups/AI_Principles
-	directory = /mnt/usb/github-backups/Resume2Web
-	directory = /mnt/usb/github-backups/school
-	directory = /mnt/usb/github-backups/Database-Team-project
-	directory = /mnt/usb/github-backups/technical-assessment-deadline-9-23-24-DerekCorniello
-	directory = /mnt/usb/github-backups/technical-project-deadline-10-14-23-DerekCorniello
-	directory = /mnt/usb/github-backups/waph-team01-sm24.github.io
-	directory = /mnt/usb/github-backups/waph-teamproject
-	directory = /mnt/usb/github-backups/8BitBeats
-	directory = /mnt/usb/github-backups/advent-of-code-2024
-	directory = /mnt/usb/github-backups/AmandaLynnDashboard
-	directory = /mnt/usb/github-backups/Blackjack
-	directory = /mnt/usb/github-backups/College_ENED1100
-	directory = /mnt/usb/github-backups/College_ENED1120
-	directory = /mnt/usb/github-backups/CS4065-Discussion-Board
-	directory = /mnt/usb/github-backups/DEMO_BallBounce
-	directory = /mnt/usb/github-backups/DEMO_PlaneSimulator
-	directory = /mnt/usb/github-backups/DerekCorniello
-	directory = /mnt/usb/github-backups/DerekCorniello.github.io
-	directory = /mnt/usb/github-backups/dotfiles
-	directory = /mnt/usb/github-backups/Game_BilliardsBonanza
-	directory = /mnt/usb/github-backups/gitcmd
-	directory = /mnt/usb/github-backups/HaskellAssignment
-	directory = /mnt/usb/github-backups/IntrotoComputerScience_Assignments
-	directory = /mnt/usb/github-backups/medava
-	directory = /mnt/usb/github-backups/Minesweeper
-	directory = /mnt/usb/github-backups/NeoVim-Setup
-	directory = /mnt/usb/github-backups/pip-req-valid
-	directory = /mnt/usb/github-backups/pomodoro-app
-	directory = /mnt/usb/github-backups/stimpl
-	directory = /mnt/usb/github-backups/TicTacToe-with-AI
-	directory = /mnt/usb/github-backups/waph-corniedj
-	directory = /mnt/usb/github-backups/.github
-	directory = /mnt/usb/github-backups/DevBits
-	directory = /mnt/usb/github-backups/AI_Principles
-	directory = /mnt/usb/github-backups/Resume2Web
-	directory = /mnt/usb/github-backups/school
-	directory = /mnt/usb/github-backups/Database-Team-project
-	directory = /mnt/usb/github-backups/technical-assessment-deadline-9-23-24-DerekCorniello
-	directory = /mnt/usb/github-backups/technical-project-deadline-10-14-23-DerekCorniello
-	directory = /mnt/usb/github-backups/waph-team01-sm24.github.io
-	directory = /mnt/usb/github-backups/waph-teamproject
+	directory = /mnt/usb/github-backups/*
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process

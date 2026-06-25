@@ -193,9 +193,15 @@ button {
     border-bottom: 2px solid #f38ba8;
 }
 
-#custom-hyprwhspr {
+#custom-hyprwhspr,
+#custom-hyprwhspr.ready,
+#custom-hyprwhspr.stopped,
+#custom-hyprwhspr.recording,
+#custom-hyprwhspr.error,
+#custom-hyprwhspr.unloaded {
     color: #89dceb;
     border-bottom: 2px solid #89dceb;
+    font-size: 16px;
 }
 
 #custom-hyprwhspr:hover {

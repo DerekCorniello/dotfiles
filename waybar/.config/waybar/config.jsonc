@@ -53,7 +53,6 @@
     "format-critical": "<span size='200%' rise='-6000' foreground='#E38C8F'>{icon}</span> {capacity}%",
     "format-charging": "<span size='200%' rise='-6000' foreground='#B1E3AD'>\uf1e6</span> {capacity}%",
     "format-plugged": "<span size='200%' rise='-6000' foreground='#B1E3AD'>\uf1e6</span> {capacity}%",
-    "format-alt": "<span size='200%' rise='-6000' foreground='#B1E3AD'>{icon}</span> {time}",
     "format-icons": [
       "\uf244",
       "\uf243",
@@ -88,22 +87,24 @@
   "custom/pacman": {
     "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
     "interval": 7200,
-    "exec": "echo $(( $(checkupdates 2>/dev/null | wc -l) + $(yay -Qua --quiet 2>/dev/null | wc -l) ))",
-    "on-click": "kitty sh -c 'yay -Syu --noconfirm; ~/dotfiles/package-backup/backup-packages.sh; echo \"Done. Press Enter to close...\"; read; pkill -SIGRTMIN+8 waybar'",
+    "exec": "~/.config/waybar/scripts/pacman-count.sh",
+    "on-click": "~/.config/waybar/scripts/pacman-update.sh",
     "signal": 8,
     "tooltip": false
   },
   "pulseaudio": {
-    "format": "<span size='200%' rise='-6000'>{icon}</span>{volume}%",
+    "format": "<span size='200%' rise='-6000'>{icon}</span> {volume}%",
     "format-muted": "<span size='200%' rise='-6000'>\uf466</span>",
     "format-icons": {
       "default": [
         "\uf026",
         "\uf027",
-        "\uf028 "
+        "\uf028"
       ]
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
   },
   "custom/power": {
     "format": "<span size='150%' rise='-6000' foreground='#ff69b4'>\u23fb</span>",
@@ -119,13 +120,18 @@
 
   "custom/hyprpicker": {
     "format": "<span size='200%' rise='-6000' foreground='#f38ba8'>⌖</span>",
-    "on-click": "hyprpicker",
+    "on-click": "hyprpicker -a",
     "tooltip": false
   },
 
   "custom/hyprwhspr": {
-    "format": "<span size='200%' rise='-6000' foreground='#89dceb'>⦿</span>",
-    "on-click": "/usr/lib/hyprwhspr/config/hyprland/hyprwhspr-tray.sh toggle",
+    "format": "<span size='185%' rise='-6000' foreground='#89dceb'>{}</span>",
+    "exec": "~/.config/hyprwhspr/hyprwhspr-tray.sh status",
+    "interval": 1,
+    "return-type": "json",
+    "exec-on-event": true,
+    "on-click": "~/.config/hyprwhspr/hyprwhspr-tray.sh record",
+    "on-click-right": "~/.config/hyprwhspr/hyprwhspr-tray.sh restart",
     "tooltip": false
   },
 
