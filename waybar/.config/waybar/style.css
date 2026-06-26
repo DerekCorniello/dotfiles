@@ -196,11 +196,19 @@ button {
 #custom-hyprwhspr,
 #custom-hyprwhspr.ready,
 #custom-hyprwhspr.stopped,
-#custom-hyprwhspr.recording,
 #custom-hyprwhspr.error,
 #custom-hyprwhspr.unloaded {
     color: #89dceb;
     border-bottom: 2px solid #89dceb;
+    font-size: 16px;
+}
+
+/* Recording stands out so you can tell at a glance that it's live.
+   (The color is driven here via CSS now that the module's format no longer
+   hard-codes a foreground color.) */
+#custom-hyprwhspr.recording {
+    color: #E75143;
+    border-bottom: 2px solid #E75143;
     font-size: 16px;
 }
 

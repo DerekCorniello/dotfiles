@@ -55,6 +55,7 @@ gdm
 getnf
 gimp
 git
+git-delta
 git-lfs
 github-cli
 gnome-backgrounds

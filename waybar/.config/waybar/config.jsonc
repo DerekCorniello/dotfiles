@@ -86,7 +86,7 @@
   },
   "custom/pacman": {
     "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
-    "interval": 7200,
+    "interval": 1800,
     "exec": "~/.config/waybar/scripts/pacman-count.sh",
     "on-click": "~/.config/waybar/scripts/pacman-update.sh",
     "signal": 8,
@@ -125,9 +125,10 @@
   },
 
   "custom/hyprwhspr": {
-    "format": "<span size='185%' rise='-6000' foreground='#89dceb'>{}</span>",
+    "format": "<span size='185%' rise='-6000'>{}</span>",
     "exec": "~/.config/hyprwhspr/hyprwhspr-tray.sh status",
-    "interval": 1,
+    "interval": 2,
+    "signal": 9,
     "return-type": "json",
     "exec-on-event": true,
     "on-click": "~/.config/hyprwhspr/hyprwhspr-tray.sh record",
