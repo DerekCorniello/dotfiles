@@ -10,7 +10,6 @@
     side-by-side = true
     navigate = true
 [alias]
-    refresh = !git checkout main && fetch --all --prune
     sweep = !git branch --merged | grep -v '\\*' | grep -v 'main' | grep -v 'master' | xargs -r git branch -d
     last = log -1 HEAD
     tree = log --graph --all --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset'
@@ -18,7 +17,13 @@
 
     # Automatically detects main or master and updates it without checking it out
     refresh = "!f() { \
-        bg=$(git rev-parse --verify --quiet main master | head -n 1); \
+        bg=''; \
+        for ref in main master; do \
+            if git rev-parse --verify --quiet \"$ref\" > /dev/null 2>&1; then \
+                bg=\"$ref\"; \
+                break; \
+            fi \
+        done; \
         if [ -n \"$bg\" ]; then \
             echo \"Updating local branch '$bg' in the background...\"; \
             git fetch --all --prune && git fetch origin \"$bg\":\"$bg\"; \
@@ -30,14 +35,22 @@
 
     # Automatically finds the closest parent/relative branch and diffs it
     review = "!f() { \
-        parent=$(git show-branch --no-name --topo-order $(git branch --list | grep -v '^*' | sed 's/^[ *]*//') HEAD | grep '\\*' | grep -v \"\\[$(git branch --show-current)\\]\" | head -n1 | sed -E 's/^.*\\[([^\\]^~]+).*$/\\1/'); \
+        parent=$(git show-branch --no-name --topo-order $(git branch --list | grep -v '^*' | sed 's/^[ *]*//') HEAD | grep '\\*' | grep -v \"\\[$(git branch --show-current)\\]\" | head -n1 | sed 's/.*\\[\\([^]]*\\).*/\\1/'); \
         if [ -n \"$parent\" ]; then \
             echo \"Comparing current branch to closest relative: $parent\"; \
             git diff \"$parent\"...HEAD; \
         else \
             echo \"No relative branch found. Defaulting to main/master.\"; \
-            bg=$(git rev-parse --verify --quiet main master | head -n 1); \
-            git diff \"$bg\"...HEAD; \
+            bg=''; \
+            for ref in main master; do \
+                if git rev-parse --verify --quiet \"$ref\" > /dev/null 2>&1; then \
+                    bg=\"$ref\"; \
+                    break; \
+                fi \
+            done; \
+            if [ -n \"$bg\" ]; then \
+                git diff \"$bg\"...HEAD; \
+            fi \
         fi \
     }; f"
 [safe]
