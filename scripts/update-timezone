@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+OLD_TZ=$(timedatectl show --property=Timezone --value 2>/dev/null || echo "unknown")
+
+NEW_TZ=$(curl -s https://ipapi.co/timezone/)
+if [[ -z "$NEW_TZ" || ! -f "/usr/share/zoneinfo/$NEW_TZ" ]]; then
+    echo "Error: Could not determine timezone (got '$NEW_TZ')" >&2
+    exit 1
+fi
+
+echo "Timezone: $OLD_TZ → $NEW_TZ"
+
+sudo timedatectl set-timezone "$NEW_TZ"
+
+killall -SIGUSR2 waybar 2>/dev/null || true
+
+echo "Done"

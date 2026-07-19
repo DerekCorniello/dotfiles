@@ -17,6 +17,8 @@ discordo-git
 discordo-git-debug
 dotool
 dotool-debug
+electron34
+electron37
 getnf
 hypremoji
 hyprwhspr

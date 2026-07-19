@@ -25,8 +25,8 @@
     "format": "<span size='200%' rise='-6000' foreground='#FFE680'>\udb80\udcdf</span> {percent}%",
     "on-click": "brightnessctl set 10%+",
     "on-click-right": "brightnessctl set 10%-",
-    "on-scroll-up": "brightnessctl set 5%+",
-    "on-scroll-down": "brightnessctl set 5%-",
+    "on-scroll-up": "~/.config/waybar/scripts/scroll-throttle.sh brightnessctl set 1%+",
+    "on-scroll-down": "~/.config/waybar/scripts/scroll-throttle.sh brightnessctl set 1%-",
     "tooltip": false
   },
   "clock": {
@@ -84,14 +84,13 @@
     "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_address}) - {device_battery_percentage}%",
     "on-click": "blueman-manager"
   },
-  "custom/pacman": {
-    "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
-    "interval": 1800,
-    "exec": "~/.config/waybar/scripts/pacman-count.sh",
-    "on-click": "~/.config/waybar/scripts/pacman-update.sh",
-    "signal": 8,
-    "tooltip": false
-  },
+    "custom/pacman": {
+        "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
+        "exec": "~/.config/waybar/scripts/pacman-count.sh",
+        "on-click": "~/.config/waybar/scripts/pacman-update.sh",
+        "signal": 8,
+        "tooltip": false
+    },
   "pulseaudio": {
     "format": "<span size='200%' rise='-6000'>{icon}</span> {volume}%",
     "format-muted": "<span size='200%' rise='-6000'>\uf466</span>",
@@ -103,8 +102,8 @@
       ]
     },
     "on-click": "pavucontrol",
-    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    "on-scroll-up": "~/.config/waybar/scripts/scroll-throttle.sh wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 1%+",
+    "on-scroll-down": "~/.config/waybar/scripts/scroll-throttle.sh wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"
   },
   "custom/power": {
     "format": "<span size='150%' rise='-6000' foreground='#ff69b4'>\u23fb</span>",

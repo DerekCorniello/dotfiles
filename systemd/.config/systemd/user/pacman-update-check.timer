@@ -1,0 +1,13 @@
+[Unit]
+Description=Check for package updates every 30 minutes
+PartOf=graphical-session.target
+Requires=graphical-session.target
+After=graphical-session.target
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=30min
+Persistent=true
+
+[Install]
+WantedBy=graphical-session.target

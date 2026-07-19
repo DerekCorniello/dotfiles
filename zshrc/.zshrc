@@ -163,6 +163,7 @@ export PATH=/home/derekcorn/.opencode/bin:$PATH
 alias cat='bat'
 alias cd='z'
 alias grep="rg"
+alias cb="cliboard"
 eval "$(zoxide init zsh)"
 
 # SonarScanner
@@ -183,3 +184,12 @@ export NVM_DIR="$HOME/.nvm"
 # Added by flyctl installer
 export FLYCTL_INSTALL="/home/derekcorn/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+# go path addition
+export PATH=$PATH:~/go/bin
+
+
+# BEGIN hunch config
+export PATH="$PATH:/home/derekcorn/code/hunch"
+source /home/derekcorn/.local/share/hunch/integrations/zsh/hunch.zsh
+# END hunch config

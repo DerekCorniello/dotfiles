@@ -23,6 +23,7 @@ bluez-utils
 brightnessctl
 btop
 btrfs-progs
+catch2
 checkupdates-with-aur
 chromium
 clang
@@ -173,6 +174,7 @@ snapshot
 socat
 sof-firmware
 sonar-scanner
+sshfs
 steam
 stockfish
 stow
@@ -198,6 +200,7 @@ ttf-roboto
 udiskie
 unityhub
 uv
+valgrind
 vicinae-bin
 vim
 waybar-git

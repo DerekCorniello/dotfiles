@@ -5,7 +5,10 @@ EXPECTED_IP = "127.0.0.1"
 GITHUB_USER = "DerekCorniello"
 
 REPO_ALIASES = {
-    "mux": "mux-lang",
+}
+
+ORGS = {
+    "mux": "muxlang",
 }
 
 REDIRECTS = {
@@ -13,5 +16,4 @@ REDIRECTS = {
 }
 
 PROJECT_BOARDS = {
-    "mux": "https://github.com/users/DerekCorniello/projects/1",
 }

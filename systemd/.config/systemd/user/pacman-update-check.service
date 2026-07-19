@@ -1,0 +1,12 @@
+[Unit]
+Description=Recompute pacman/AUR/flatpak update count and signal waybar
+PartOf=graphical-session.target
+Requires=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/waybar/scripts/pacman-count.sh --wait
+
+[Install]
+WantedBy=graphical-session.target
