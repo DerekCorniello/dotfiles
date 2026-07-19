@@ -10,15 +10,15 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-echo "Installing essential packages..."
-sudo pacman -Sy --needed git stow flatpak
+echo "Updating system and installing essential packages..."
+sudo pacman -Syu --needed git stow flatpak base-devel
 
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo "Cloning dotfiles repository..."
     git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
 else
     echo "Dotfiles repository already exists, pulling latest changes..."
-    cd "$DOTFILES_DIR" && git pull
+    git -C "$DOTFILES_DIR" pull
 fi
 
 cd "$DOTFILES_DIR"
@@ -42,20 +42,18 @@ if [ -f package-backup/yay-packages.txt ]; then
 fi
 
 if [ -f package-backup/flatpak-packages.txt ]; then
-    xargs --no-run-if-empty -a package-backup/flatpak-packages.txt flatpak install --latest -y
+    xargs --no-run-if-empty -a package-backup/flatpak-packages.txt flatpak install --noninteractive -y
 fi
 
 echo "Ensuring critical packages are installed..."
 sudo pacman -S --needed --noconfirm networkmanager blueman
 
 echo "Stowing dotfiles..."
-stow */
+stow backgrounds fastfetch gitconfig hypr kitty nvim opencode swaync swayosd systemd tmux waybar wofi zshrc
 
-echo "Setting up hymission plugin..."
-if command -v hyprpm &>/dev/null; then
-    hyprpm add "$DOTFILES_DIR/hypr/hymission-build"
-    hyprpm enable hymission
-    hyprpm reload
+echo "Enabling systemd user services..."
+if command -v systemctl &>/dev/null; then
+    systemctl --user enable --now pacman-update-check.timer 2>/dev/null || true
 fi
 
 echo "Setup complete! Please restart your session."
