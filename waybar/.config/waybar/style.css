@@ -1,5 +1,10 @@
 @import "/usr/lib/hyprwhspr/config/waybar/hyprwhspr-style.css";
-@import "mocha.css"; 
+@import "mocha.css";
+
+#custom-hyprwhspr {
+  margin: 2px 6px;
+  font-size: 16px;
+}
 
 * {
     font-family: "CodeNewRoman Nerd Font Mono";
@@ -99,17 +104,14 @@ button {
 #scratchpad,
 #custom-hyprpicker,
 #custom-hyprwhspr {
-  margin: 1px 6px 2px;
+  margin: 2px 6px;
 }
 
 #bluetooth,
 #custom-pacman,
 #backlight,
-#custom-power,
-#custom-hyprpicker,
-#custom-hyprwhspr,
 #custom-swaync {
-  min-width: 26px;
+  min-width: 32px;
 }
 
 #backlight {
@@ -169,6 +171,7 @@ button {
 #custom-power {
     color: #ff69b4;
     border-bottom: 2px solid #ff69b4;
+    padding: 0 2px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -191,6 +194,7 @@ button {
 #custom-hyprpicker {
     color: #f38ba8;
     border-bottom: 2px solid #f38ba8;
+    padding: 0 2px;
 }
 
 #custom-hyprwhspr,
@@ -201,6 +205,7 @@ button {
     color: #89dceb;
     border-bottom: 2px solid #89dceb;
     font-size: 16px;
+    padding: 0 2px;
 }
 
 /* Recording stands out so you can tell at a glance that it's live.
