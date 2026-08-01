@@ -4,11 +4,16 @@ from shortd.config import REDIRECTS
 from shortd.handlers.github import resolve as github_resolve
 from shortd.handlers.redirects import resolve as redirects_resolve
 from shortd.handlers.school import resolve as school_resolve
+from shortd.handlers.social import LINKS as SOCIAL_LINKS
+from shortd.handlers.social import resolve as social_resolve
 
 HANDLERS = {
     "gh": github_resolve,
     "school": school_resolve,
 }
+
+for key in SOCIAL_LINKS:
+    HANDLERS[key] = social_resolve
 
 for key in REDIRECTS:
     HANDLERS[key] = redirects_resolve

@@ -1,18 +1,15 @@
-def resolve(path: set):
-    parts = [p for p in path.split("/") if p]
+from typing import Optional
+
+LINKS = {
+    "canvas": "https://uc.instructure.com/",
+    "catalyst": "https://catalyst.uc.edu/",
+    "email": "https://mail.uc.edu/",
+}
+
+
+def resolve(path: str) -> Optional[str]:
+    parts = [p for p in path.split("/") if p][1:]
     if not parts:
         return None
 
-    if parts[0] != "school":
-        return None
-
-    parts = parts[1:]
-    if parts[0] == "canvas":
-        return "https://uc.instructure.com/"
-
-    if parts[0] == "catalyst":
-        return "https://catalyst.uc.edu/"
-
-    if parts[0] == "email":
-        return "https://mail.uc.edu/"
-    return None
+    return LINKS.get(parts[0])
