@@ -119,6 +119,7 @@ kali-themes
 kdenlive
 kitty
 libreoffice-still
+libva-nvidia-driver
 lightdm
 linux
 linux-firmware
@@ -201,6 +202,7 @@ udiskie
 unityhub
 uv
 valgrind
+vesktop
 vicinae-bin
 vim
 waybar-git

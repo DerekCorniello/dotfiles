@@ -72,6 +72,10 @@ hl.config({
         disable_hyprland_logo   = true,
         focus_on_activate       = true,
     },
+
+    xwayland = {
+        force_zero_scaling = true,
+    },
 })
 
 -- Animations (uses the bezier defined in env.lua).

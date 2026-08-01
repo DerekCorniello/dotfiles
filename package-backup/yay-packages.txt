@@ -54,6 +54,8 @@ teams-debug
 teams-for-linux
 teams-for-linux-debug
 unityhub
+vesktop
+vesktop-debug
 vicinae-bin
 vicinae-bin-debug
 waybar-git

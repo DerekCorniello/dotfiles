@@ -82,7 +82,7 @@ hl.bind("XF86Launch4", hl.dsp.exec_cmd("~/dotfiles/scripts/profile_switch.sh"))
 -- hyprwhspr - Toggle speech-to-text
 hl.bind(
     mainMod .. " + ALT + D",
-    hl.dsp.exec_cmd("/usr/lib/hyprwhspr/config/hyprland/hyprwhspr-tray.sh record"),
+    hl.dsp.exec_cmd("hyprwhspr record toggle"),
     { description = "Speech-to-text" }
 )
 

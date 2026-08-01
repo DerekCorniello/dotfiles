@@ -130,7 +130,7 @@
     "signal": 9,
     "return-type": "json",
     "exec-on-event": true,
-    "on-click": "~/.config/hyprwhspr/hyprwhspr-tray.sh record",
+    "on-click": "hyprwhspr record toggle",
     "on-click-right": "~/.config/hyprwhspr/hyprwhspr-tray.sh restart",
     "tooltip": false
   },
