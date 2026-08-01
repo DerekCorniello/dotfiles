@@ -3,12 +3,10 @@ import os
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import unquote, urlparse
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 from shortd.config import HOSTS_FILE, HOSTNAME, EXPECTED_IP
 from shortd.router import resolve
 
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 log = logging.getLogger("shortd")
 
 

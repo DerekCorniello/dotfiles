@@ -3,9 +3,11 @@ from typing import Optional
 from shortd.config import REDIRECTS
 from shortd.handlers.github import resolve as github_resolve
 from shortd.handlers.redirects import resolve as redirects_resolve
+from shortd.handlers.school import resolve as school_resolve
 
 HANDLERS = {
     "gh": github_resolve,
+    "school": school_resolve,
 }
 
 for key in REDIRECTS:
