@@ -1,3 +1,6 @@
 .env
 hypr/custom-hymission/build/
 hypr/custom-hymission/.git/
+
+pi-harness/node_modules/
+pi-harness/extensions/summaries/config.private.json

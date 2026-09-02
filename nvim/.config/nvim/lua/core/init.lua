@@ -95,6 +95,13 @@ local plugins =
         lazy = false,
     },
     {
+        "mfussenegger/nvim-jdtls",
+        ft = "java",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
+    },
+    {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.6',
         dependencies = { 'nvim-lua/plenary.nvim' }
@@ -192,3 +199,5 @@ local plugins =
     }
 }
 require("lazy").setup(plugins)
+
+require("spotbugs").setup()

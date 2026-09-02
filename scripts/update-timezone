@@ -4,9 +4,33 @@ set -e
 
 OLD_TZ=$(timedatectl show --property=Timezone --value 2>/dev/null || echo "unknown")
 
-NEW_TZ=$(curl -s https://ipapi.co/timezone/)
+fetch_tz() {
+    local url=$1
+    local filter=$2
+    curl -s --max-time 5 "$url" | $filter 2>/dev/null | tr -d '"' | tr -d ' '
+}
+
+NEW_TZ=""
+for url in \
+    "https://ipinfo.io/timezone" \
+    "https://worldtimeapi.org/api/ip" \
+    "https://ip-api.com/json/?fields=timezone" \
+    "https://geolocation-db.com/json/" \
+    "https://ipapi.co/timezone/"
+do
+    case "$url" in
+        *ipinfo.io*)      NEW_TZ=$(fetch_tz "$url" "cat") ;;
+        *worldtimeapi*)   NEW_TZ=$(fetch_tz "$url" "jq -r .timezone") ;;
+        *ip-api.com*)     NEW_TZ=$(fetch_tz "$url" "jq -r .timezone") ;;
+        *geolocation-db*) NEW_TZ=$(fetch_tz "$url" "jq -r .timezone") ;;
+        *ipapi.co*)       NEW_TZ=$(fetch_tz "$url" "cat") ;;
+    esac
+    [[ -n "$NEW_TZ" && -f "/usr/share/zoneinfo/$NEW_TZ" ]] && break
+    NEW_TZ=""
+done
+
 if [[ -z "$NEW_TZ" || ! -f "/usr/share/zoneinfo/$NEW_TZ" ]]; then
-    echo "Error: Could not determine timezone (got '$NEW_TZ')" >&2
+    echo "Error: Could not determine timezone (tried multiple services)" >&2
     exit 1
 fi
 

@@ -2,6 +2,7 @@
 acpid
 alsa-utils
 arduino-cli
+ark
 arm-none-eabi-binutils
 arm-none-eabi-gcc
 arm-none-eabi-newlib
@@ -29,6 +30,7 @@ chromium
 clang
 clang17
 cloc
+codeql
 cuda
 cups
 cups-pdf
@@ -38,6 +40,7 @@ discord
 discordo-git
 docker
 docker-compose
+dolphin
 dosfstools
 dotnet-sdk
 dotool
@@ -51,6 +54,7 @@ fd
 firefox
 fprintd
 fzf
+gamescope
 gdb
 gdm
 getnf
@@ -135,9 +139,11 @@ nautilus
 ncdu
 neovim
 nerdfetch
+net-tools
 nethack
 network-manager-applet
 networkmanager
+networkmanager-openconnect
 nmap
 nodejs
 npm
@@ -151,6 +157,8 @@ opam
 openbsd-netcat
 opencode-bin
 opencode-desktop-bin
+openconnect
+openconnect-sso
 orca
 otf-codenewroman-nerd
 papirus-icon-theme
@@ -168,9 +176,13 @@ riscv64-elf-binutils
 riscv64-elf-gcc
 riscv64-elf-newlib
 rpi-imager
+ruff
 rygel
 scc
+scran
+shellcheck
 simple-scan
+slack-desktop
 snapshot
 socat
 sof-firmware
@@ -185,10 +197,9 @@ swaybg
 swaync
 swayosd
 t3code-bin
+tar-scripts
 teams-for-linux
 tecla
-thunar
-thunar-volman
 tig
 tk
 tmux
@@ -202,14 +213,16 @@ udiskie
 unityhub
 uv
 valgrind
-vesktop
+vhs
 vicinae-bin
 vim
 waybar-git
 waydroid
 wdisplays
 webkit2gtk
+wf-recorder
 wireshark-qt
+wl-proxy
 wlroots0.18
 wofi
 wrangler

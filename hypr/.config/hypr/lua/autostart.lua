@@ -12,13 +12,19 @@ end
 
 hl.on("hyprland.start", function()
     run("hyprpm reload")
+    -- Rebuild KDE's service DB at every login so Dolphin's "Open With" /
+    -- file associations survive package updates, which otherwise rebuild the
+    -- cache without XDG_MENU_PREFIX and leave it empty again.
+    run("kbuildsycoca6 --noincremental")
     run("systemctl --user start graphical-session.target")
     run("waybar")
     run("swaync")
     run("swayosd-server --top-margin 0.95")
-    run("hypridle")
+    -- hypridle now via systemd --user service (autostart duplicate caused "Is hypridle already running?")
+    -- run("hypridle")
     run("hyprpaper")
     run("USE_LAYER_SHELL=0 vicinae server")
+    --     -- run("wl-paste --primary --watch wl-copy")
 
     -- monitor-listener.sh sleeps 0.3s, then runs apply_layout and
     -- listens for monitor.added/removed events via the Hyprland IPC

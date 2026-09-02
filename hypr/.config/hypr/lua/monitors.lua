@@ -24,6 +24,32 @@ hl.monitor({
     scale    = 1,
 })
 
+-- DP-4 Roku TV: scale <1 needed (1.0 is huge). <1 breaks Electron
+-- via Chromium bug (#12608) -> shrunken content.
+-- Workaround: wl-veil -f wp_fractional_scale_manager_v1 <app> (wl-proxy)
+-- Patched: ~/.local/bin/{discord,slack,teams,steam} + desktop overrides
+-- Fallback: ~/.config/electron-flags.conf
+hl.monitor({
+    output   = "DP-4",
+    mode     = "1920x1080@60.00Hz",
+    position = "auto",
+    scale    = 0.75,
+})
+
+hl.monitor({
+    output   = "DP-5",
+    mode     = "1920x1080@60.00Hz",
+    position = "auto",
+    scale    = 0.75,
+})
+
+hl.monitor({
+    output   = "desc:RKU Roku TV",
+    mode     = "1920x1080@60.00Hz",
+    position = "auto",
+    scale    = 0.75,
+})
+
 hl.monitor({
     output   = "eDP-1",
     mode     = "2560x1600@165.00Hz",

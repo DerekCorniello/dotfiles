@@ -51,3 +51,10 @@ hl.window_rule({
     match = { title = "swaync" },
     float = true,
 })
+
+hl.window_rule({
+    name  = "dia-launcher-float",
+    match = { class = "^(dia)$" },
+    float  = true,
+    center = true,
+})

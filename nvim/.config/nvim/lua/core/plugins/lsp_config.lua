@@ -1,5 +1,6 @@
 -- Mason for installing LSP servers (mason-lspconfig is kept for get_installed_servers only)
 require("mason").setup({
+    ensure_installed = { "java-debug-adapter", "java-test" },
     ui = {
         icons = {
             package_installed = "",
@@ -11,7 +12,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
     automatic_enable = false,
-    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd" }
+    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd", "jdtls" }
 })
 
 -- Shared on_attach for all LSPs
@@ -143,17 +144,39 @@ configure("clangd", {
     init_options = { fallbackFlags = {} },
 })
 
+-- codeqlls: CodeQL - mason provides `codeql` CLI, not bundled in nvim 0.12
+local function resolve_codeql()
+    local mason_codeql = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin", "codeql")
+    if vim.uv.fs_stat(mason_codeql) then
+        return mason_codeql
+    end
+    local system_codeql = vim.fn.exepath("codeql")
+    if system_codeql ~= "" then
+        return system_codeql
+    end
+    return "codeql"
+end
+
+configure("codeqlls", {
+    cmd = { resolve_codeql(), "execute", "language-server", "--check-errors", "ON_CHANGE", "-q" },
+    filetypes = { "ql" },
+    root_markers = { "qlpack.yml", ".git" },
+    settings = {},
+})
+
 -- rust_analyzer: handled by rustaceanvim, skip
 
 -- Wire up any other mason-installed servers after Mason installs them
 local function setup_servers()
     for _, server in ipairs(require('mason-lspconfig').get_installed_servers()) do
-        if server ~= "lua_ls"
+        if server ~= "codeqlls"
+            and server ~= "lua_ls"
             and server ~= "gopls"
             and server ~= "emmet_ls"
             and server ~= "ocamllsp"
             and server ~= "clangd"
             and server ~= "rust_analyzer"
+            and server ~= "jdtls"
         then
             vim.lsp.config(server, {
                 on_attach = on_attach,

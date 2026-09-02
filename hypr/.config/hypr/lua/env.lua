@@ -2,9 +2,16 @@
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
 -- See https://wiki.hypr.land/Configuring/Basics/Animations/
 
-hl.env("ELECTRON_OZONE_PLATFORM_HINT", "x11")
+hl.env("PATH", os.getenv("HOME") .. "/.local/bin:" .. os.getenv("PATH"))
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
+-- kbuildsycoca (KDE's service DB, used by Dolphin's "Open With" and file
+-- associations) only discovers apps through the *_applications.menu named by
+-- this prefix. Not set (or meant for a Plasma session), it builds an empty
+-- service DB and Dolphin shows no apps. This system ships gnome-applications.menu.
+hl.env("XDG_MENU_PREFIX", "gnome-")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("NVD_BACKEND", "direct")
 
