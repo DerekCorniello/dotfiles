@@ -1,0 +1,15 @@
+{
+  "name": "pi-harness",
+  "private": true,
+  "type": "module",
+  "description": "Derek's pi extensions; npm deps here resolve for extensions symlinked into ~/.pi/agent/extensions",
+  "dependencies": {
+    "@effect/platform-node": "^4.0.0-beta.99",
+    "acorn": "^8.17.0",
+    "effect": "^4.0.0-beta.99"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^5.9.2"
+  }
+}
