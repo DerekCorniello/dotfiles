@@ -66,6 +66,25 @@ local plugins =
     -- Web Development
     "ray-x/web-tools.nvim",
 
+    -- Formatting (prettier etc, per repo config)
+    {
+        "stevearc/conform.nvim",
+        event = { "BufWritePre" },
+        cmd = { "ConformInfo" },
+        keys = {
+            {
+                "<space>f",
+                function()
+                    require("conform").format({ async = true, lsp_format = "fallback" })
+                end,
+                desc = "Format buffer (conform)",
+            },
+        },
+        config = function()
+            require("core.plugins.conform")
+        end,
+    },
+
     -- Markdown
     {
         "iamcco/markdown-preview.nvim",

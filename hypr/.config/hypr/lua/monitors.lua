@@ -1,7 +1,7 @@
 -- Default monitor layout.
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
--- These run on Hyprland start; the hotplug listener in autostart.lua rebalances
--- workspaces when monitors are added or removed.
+-- Hotplug workspace moves are Roku-gated in lua/roku-workspaces.lua
+-- (+ roku-layout.sh). Other HDMI outputs use Hyprland defaults.
 
 hl.monitor({
     output   = "HDMI-A-1",

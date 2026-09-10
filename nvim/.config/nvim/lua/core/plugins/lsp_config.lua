@@ -12,7 +12,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
     automatic_enable = false,
-    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd", "jdtls" }
+    ensure_installed = { "lua_ls", "pylsp", "ts_ls", "eslint", "jsonls", "rust_analyzer", "gopls", "sqls", "emmet_ls", "html", "clangd", "jdtls" }
 })
 
 -- Shared on_attach for all LSPs
@@ -28,7 +28,7 @@ local on_attach = function(_, bufnr)
     keymap('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     keymap('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     keymap('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    keymap('n', '<space>f', function() vim.lsp.buf.format({ async = true }) end, bufopts)
+    keymap('n', '<space>f', function() require("conform").format({ async = true, lsp_format = "fallback" }) end, bufopts)
     keymap('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     keymap('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     keymap('n', '<space>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, bufopts)
@@ -127,6 +127,18 @@ local function resolve_clangd()
     return "clangd"
 end
 
+configure("pylsp", {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = { maxLineLength = 88 },
+                -- optional: use ruff instead of pycodestyle for faster linting
+                -- ruff = { enabled = true, lineLength = 88 },
+            },
+        },
+    },
+})
+
 configure("clangd", {
     cmd = {
         resolve_clangd(),
@@ -166,6 +178,42 @@ configure("codeqlls", {
 
 -- rust_analyzer: handled by rustaceanvim, skip
 
+-- ts_ls: strict TypeScript. Prettier (conform) owns formatting, so the
+-- server formatter is off here and inlay hints turn on per buffer.
+local function ts_attach(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    on_attach(client, bufnr)
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+end
+
+local ts_inlay_hints = {
+    includeInlayParameterNameHints = "all",
+    includeInlayVariableTypeHints = true,
+    includeInlayFunctionLikeReturnTypeHints = true,
+    includeInlayPropertyDeclarationTypeHints = true,
+    includeInlayEnumMemberValueHints = true,
+}
+
+configure("ts_ls", {
+    init_options = {
+        hostInfo = "neovim",
+        preferences = {
+            importModuleSpecifierPreference = "relative",
+        },
+    },
+    settings = {
+        typescript = { inlayHints = ts_inlay_hints },
+        javascript = { inlayHints = ts_inlay_hints },
+    },
+    on_attach = ts_attach,
+})
+vim.lsp.enable("ts_ls")
+
+-- eslint: picks up each project's flat config (eslint.config.js).
+-- No settings needed, defaults handle working directory and flat config.
+configure("eslint", {})
+
 -- Wire up any other mason-installed servers after Mason installs them
 local function setup_servers()
     for _, server in ipairs(require('mason-lspconfig').get_installed_servers()) do
@@ -177,6 +225,7 @@ local function setup_servers()
             and server ~= "clangd"
             and server ~= "rust_analyzer"
             and server ~= "jdtls"
+            and server ~= "ts_ls"
         then
             vim.lsp.config(server, {
                 on_attach = on_attach,

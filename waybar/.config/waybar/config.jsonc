@@ -107,8 +107,8 @@
   },
   "custom/power": {
     "format": "<span size='150%' rise='-6000' foreground='#ff69b4'>\u23fb</span>",
-    "on-click": "shutdown now",
-    "on-click-right": "systemctl reboot",
+    "on-click": "~/.config/waybar/scripts/powermenu.sh shutdown",
+    "on-click-right": "~/.config/waybar/scripts/powermenu.sh reboot",
     "tooltip": false
   },
   "hyprland/workspaces": {

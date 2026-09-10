@@ -1,6 +1,6 @@
 require("nvim-treesitter.config").setup({
     highlight = { enable = true },
-    ensure_installed = { "ql", "javascript", "lua", "python", "cpp" },
+    ensure_installed = { "ql", "javascript", "typescript", "tsx", "lua", "python", "cpp", "json", "jsonc", "css", "html" },
 })
 
 vim.filetype.add({ extension = { ql = "ql", qll = "ql" } })

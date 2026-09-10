@@ -1,6 +1,5 @@
 accounts-qml-module
 accounts-qml-module-debug
-asusctl
 asusctl-debug
 aurutils
 bash-pipes

@@ -7,6 +7,7 @@ local config_dir = (os.getenv("HYPRLAND_CONFIG") or (os.getenv("HOME") .. "/.con
 
 dofile(config_dir .. "/lua/env.lua")
 dofile(config_dir .. "/lua/monitors.lua")
+dofile(config_dir .. "/lua/roku-workspaces.lua")
 dofile(config_dir .. "/lua/devices.lua")
 dofile(config_dir .. "/lua/windowrules.lua")
 dofile(config_dir .. "/lua/binds.lua")
@@ -115,7 +116,8 @@ pcall(function()
                 outer_padding_left = 32,
                 layout_engine = "thumbnail",
                 show_focus_indicator = 1,
-                expand_selected_window = 1,
+                selected_expand_scale = 1.18,
+                hover_expand_scale = 1.18,
                 overview_focus_follows_mouse = 1,
                 workspace_strip_anchor = "left",
                 workspace_strip_empty_mode = "existing",

@@ -70,7 +70,7 @@ button {
 
 #workspaces button:hover {
     color: @white;
-    border-top: 1px solid @white;
+    border-top: 2px solid @white;
 }
 
 #workspaces button:not(.hosting-monitor) {
@@ -83,6 +83,24 @@ button {
     color: #666666;
     border-top: 2px solid transparent;
     background-color: transparent;
+}
+
+/* Hover wins over everything (including .active): same 2px indicator, just
+ * white. Fully explicit so the GTK theme can't add its own hover borders,
+ * inset shadows or backgrounds that would stack into a thicker bar. */
+#workspaces button:hover,
+#workspaces button.active:hover,
+#workspaces button:not(.hosting-monitor):hover {
+    color: @white;
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    border-top: 2px solid @white;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    text-shadow: none;
 }
 
 #custom-power,

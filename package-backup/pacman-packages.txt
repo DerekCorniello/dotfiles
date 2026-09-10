@@ -119,6 +119,7 @@ hyprpicker
 hyprshot
 hyprwhspr
 intel-ucode
+jdk17-openjdk
 kali-themes
 kdenlive
 kitty
@@ -135,6 +136,7 @@ loupe
 lxc
 malcontent
 man-db
+maven
 nautilus
 ncdu
 neovim

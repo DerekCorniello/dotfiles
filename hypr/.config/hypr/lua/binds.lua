@@ -18,7 +18,7 @@ hl.bind(mainMod .. " + space",         hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SHIFT + T",     hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + P",             hl.dsp.exec_cmd("scran -d \"$HOME/Pictures/Screenshots\""))
 hl.bind(mainMod .. " + SHIFT + P",     hl.dsp.exec_cmd("scran -g \"$(hyprctl activewindow -j | jq -r '(.at[0]|tostring) + \",\" + (.at[1]|tostring) + \" \" + (.size[0]|tostring) + \"x\" + (.size[1]|tostring)')\" -d \"$HOME/Pictures/Screenshots\""))
-hl.bind("SHIFT + " .. mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("ALT + l", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + E",             hl.dsp.exec_cmd("~/.local/bin/hypremoji-keep"))
 hl.bind(mainMod .. " + Z",             hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + D",             hl.dsp.exec_cmd("discord"))
@@ -38,11 +38,11 @@ end
 hl.bind(mainMod .. " + 0", hl.dsp.focus({ workspace = 10 }))
 hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = 10 }))
 
--- Move active window with ALT + vim arrows
-hl.bind("ALT + h", hl.dsp.window.move({ direction = "l" }))
-hl.bind("ALT + l", hl.dsp.window.move({ direction = "r" }))
-hl.bind("ALT + k", hl.dsp.window.move({ direction = "u" }))
-hl.bind("ALT + j", hl.dsp.window.move({ direction = "d" }))
+-- Move active window with SUPER + SHIFT + vim arrows
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "l" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "r" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "d" }))
 
 -- Resize active window with mainMod + SHIFT + arrow keys
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x =  10, y =   0 }))
