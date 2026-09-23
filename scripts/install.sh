@@ -11,7 +11,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 echo "Updating system and installing essential packages..."
-sudo pacman -Syu --needed git stow flatpak base-devel
+sudo pacman -Syu --needed git stow base-devel
 
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo "Cloning dotfiles repository..."
@@ -39,10 +39,6 @@ fi
 
 if [ -f package-backup/yay-packages.txt ]; then
     xargs --no-run-if-empty -a package-backup/yay-packages.txt yay -S --needed --noconfirm
-fi
-
-if [ -f package-backup/flatpak-packages.txt ]; then
-    xargs --no-run-if-empty -a package-backup/flatpak-packages.txt flatpak install --noninteractive -y
 fi
 
 echo "Ensuring critical packages are installed..."

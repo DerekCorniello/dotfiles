@@ -1,0 +1,75 @@
+window {
+	background-image: url("background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: @theme_bg_color;
+	color: @theme_fg_color;
+}
+
+#window-box {
+	padding: 36px 42px;
+	border: 1px solid alpha(@theme_fg_color, 0.18);
+	border-radius: 16px;
+	background-color: alpha(@theme_bg_color, 0.92);
+	box-shadow: 0 12px 36px alpha(@theme_bg_color, 0.80);
+}
+
+#clock-label,
+window.focused:not(.hidden) #clock-label {
+	font-family: "CodeNewRoman Nerd Font Mono";
+	font-size: 72pt;
+	font-weight: 600;
+	color: @theme_fg_color;
+}
+
+#date-label,
+window.focused:not(.hidden) #date-label {
+	font-family: "CodeNewRoman Nerd Font Mono";
+	font-size: 16pt;
+	color: @theme_unfocused_fg_color;
+}
+
+#time-box {
+	margin-bottom: 18px;
+}
+
+#user-name {
+	margin-bottom: 8px;
+	font-family: "CodeNewRoman Nerd Font Mono";
+	font-size: 14pt;
+	color: @theme_fg_color;
+}
+
+#body-grid {
+	margin-top: 24px;
+}
+
+#input-label {
+	font-family: "CodeNewRoman Nerd Font Mono";
+	color: @theme_fg_color;
+}
+
+#input-field {
+	min-width: 360px;
+	min-height: 42px;
+	padding: 0 12px;
+	border: 2px solid alpha(@theme_selected_bg_color, 0.65);
+	border-radius: 8px;
+	background-color: alpha(@theme_base_color, 0.94);
+	color: @theme_text_color;
+	caret-color: @theme_text_color;
+}
+
+#input-field:focus {
+	border-color: @theme_selected_bg_color;
+	box-shadow: 0 0 0 1px alpha(@theme_selected_bg_color, 0.35);
+}
+
+#warning-label {
+	color: @warning_color;
+}
+
+#error-label {
+	color: @error_color;
+}

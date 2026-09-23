@@ -14,6 +14,11 @@ hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
 hl.env("XDG_MENU_PREFIX", "gnome-")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("NVD_BACKEND", "direct")
+-- PRIME render offload: heavy GL/VK apps (games) default to NVIDIA dGPU,
+-- compositor keeps driving outputs on Intel iGPU. Buffers shared via DMA-BUF.
+hl.env("__NV_PRIME_RENDER_OFFLOAD", "1")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("__VK_LAYER_NV_optimus", "NVIDIA_only")
 
 -- Snappier bezier: quicker start and end
 hl.curve("myBezier", { type = "bezier", points = { { 0.3, 1 }, { 0.6, 1 } } })

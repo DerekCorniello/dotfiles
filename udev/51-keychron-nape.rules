@@ -1,0 +1,5 @@
+# Allow the logged-in user to configure the Keychron Nape Pro via WebHID.
+# The device exposes its programmable interface as hidraw, not just evdev.
+SUBSYSTEM=="hidraw", KERNEL=="hidraw*", SUBSYSTEMS=="usb", \
+  ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0440", \
+  GROUP="input", MODE="0660", TAG+="uaccess"

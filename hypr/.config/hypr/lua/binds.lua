@@ -12,13 +12,17 @@ local browser     = "zen-browser"
 -- Basic app launches
 hl.bind(mainMod .. " + return",        hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + C",             hl.dsp.window.close())
+-- SUPER+SHIFT+C truly quits the active app (SIGTERM its PID). Needed for
+-- tray-huggers (discord, teams-for-linux, vesktop, slack, ...) where close
+-- above only hides the window and leaves the process running.
+hl.bind(mainMod .. " + SHIFT + C",     hl.dsp.exec_cmd("sh -c 'pid=$(hyprctl activewindow -j | jq -r \".pid // empty\"); [ -n \"$pid\" ] && kill \"$pid\"'"), { description = "Quit active app (SIGTERM)" })
 hl.bind(mainMod .. " + F",             hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V",             hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + space",         hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SHIFT + T",     hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + P",             hl.dsp.exec_cmd("scran -d \"$HOME/Pictures/Screenshots\""))
 hl.bind(mainMod .. " + SHIFT + P",     hl.dsp.exec_cmd("scran -g \"$(hyprctl activewindow -j | jq -r '(.at[0]|tostring) + \",\" + (.at[1]|tostring) + \" \" + (.size[0]|tostring) + \"x\" + (.size[1]|tostring)')\" -d \"$HOME/Pictures/Screenshots\""))
-hl.bind("ALT + l", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("ALT + l", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mainMod .. " + E",             hl.dsp.exec_cmd("~/.local/bin/hypremoji-keep"))
 hl.bind(mainMod .. " + Z",             hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + D",             hl.dsp.exec_cmd("discord"))
@@ -98,5 +102,4 @@ pcall(function()
     hl.bind(mainMod .. " + Escape", hl.plugin.hymission.close)
 end)
 ]]
-
 

@@ -10,7 +10,7 @@
 cache="$HOME/.cache/waybar-pacman-count"
 
 _get_count() {
-    echo $(( $(checkupdates 2>/dev/null | wc -l) + $(yay -Qua --quiet 2>/dev/null | wc -l) + $(flatpak remote-ls --updates 2>/dev/null | wc -l) ))
+    echo $(( $(checkupdates 2>/dev/null | wc -l) + $(yay -Qua --quiet 2>/dev/null | wc -l) ))
 }
 
 if [ "${1:-}" = "--wait" ]; then

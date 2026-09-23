@@ -189,6 +189,11 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PATH=$PATH:~/go/bin
 
 
+# BEGIN randoop config
+export RANDOOP_PATH="$HOME/.local/share/randoop/randoop-4.3.4"
+export RANDOOP_JAR="$RANDOOP_PATH/randoop-all-4.3.4.jar"
+# END randoop config
+
 # BEGIN hunch config
 export PATH="$PATH:/home/derekcorn/code/hunch"
 source /home/derekcorn/.local/share/hunch/integrations/zsh/hunch.zsh

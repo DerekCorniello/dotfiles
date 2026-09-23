@@ -7,14 +7,14 @@ This repository contains my personal dotfiles and configurations for a customize
 
 ## Included Configurations
 - [**`gitconfig`**](https://git-scm.com/docs/git-config): Configuration for Git, including my preferred aliases and settings.  
-- [**`hypr`**](https://github.com/hyprwm/Hyprland): Configuration for the Hyprland Wayland compositor.  
+- [**`hypr`**](https://github.com/hyprwm/Hyprland): Configuration for the Hyprland Wayland compositor, Hypridle, and GTKLock.
 - [**`kitty`**](https://github.com/kovidgoyal/kitty): Configuration for the Kitty terminal UI.  
 - [**`nvim`**](https://github.com/neovim/neovim): Neovim configuration with my plugin setup and custom keybindings.  
 - [**`tmux`**](https://github.com/tmux/tmux): Configuration for tmux with my preferred panes, windows, and keybindings.  
 - [**`waybar`**](github.com/Alexays/Waybar): Configuration for Waybar to display system information on my Wayland desktop.  
 - [**`zshrc`**](https://github.com/ohmyzsh/ohmyzsh): Zsh configuration with Oh My Zsh and my preferred plugins and themes.
 - **[`fastfetch`](https://github.com/fastfetch-cli/fastfetch) and [`onefetch`](https://github.com/o2sh/onefetch)**(#fastfetch-onefetch): Contains data fetching for the OS and for git configurations.  
-- **`package-backup`**: Contains all of the packages from pacman, yay, and flatpak that are in the OS.
+- **`package-backup`**: Contains the explicitly installed pacman and AUR packages.
 
 
 ## Installation

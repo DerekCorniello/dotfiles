@@ -98,6 +98,7 @@ godot
 gparted
 grilo-plugins
 grub
+gtklock
 gvfs
 gvfs-afc
 gvfs-dnssd
@@ -113,9 +114,9 @@ hunspell-en_us
 hypremoji
 hypridle
 hyprland
-hyprlock
 hyprpaper
 hyprpicker
+hyprpm
 hyprshot
 hyprwhspr
 intel-ucode
@@ -154,6 +155,7 @@ ntfs-3g
 nvidia-open
 nwg-look
 obs-studio
+octave
 onefetch
 opam
 openbsd-netcat
