@@ -15,6 +15,7 @@ This repository contains my personal dotfiles and configurations for a customize
 - [**`zshrc`**](https://github.com/ohmyzsh/ohmyzsh): Zsh configuration with Oh My Zsh and my preferred plugins and themes.
 - **[`fastfetch`](https://github.com/fastfetch-cli/fastfetch) and [`onefetch`](https://github.com/o2sh/onefetch)**(#fastfetch-onefetch): Contains data fetching for the OS and for git configurations.  
 - **`package-backup`**: Contains the explicitly installed pacman and AUR packages.
+- **`skills`**: My personal agent skills, shared across the AI harnesses linked to this directory.
 
 
 ## Installation
