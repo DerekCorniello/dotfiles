@@ -22,7 +22,7 @@ hl.bind(mainMod .. " + space",         hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SHIFT + T",     hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + P",             hl.dsp.exec_cmd("scran -d \"$HOME/Pictures/Screenshots\""))
 hl.bind(mainMod .. " + SHIFT + P",     hl.dsp.exec_cmd("scran -g \"$(hyprctl activewindow -j | jq -r '(.at[0]|tostring) + \",\" + (.at[1]|tostring) + \" \" + (.size[0]|tostring) + \"x\" + (.size[1]|tostring)')\" -d \"$HOME/Pictures/Screenshots\""))
-hl.bind("ALT + l", hl.dsp.exec_cmd("loginctl lock-session"))
+hl.bind("ALT + l", hl.dsp.exec_cmd("pidof gtklock || gtklock"))
 hl.bind(mainMod .. " + E",             hl.dsp.exec_cmd("~/.local/bin/hypremoji-keep"))
 hl.bind(mainMod .. " + Z",             hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + D",             hl.dsp.exec_cmd("discord"))
@@ -83,13 +83,6 @@ hl.bind("XF86KbdBrightnessUp",   hl.dsp.exec_cmd("~/dotfiles/scripts/toggle_kb_b
 -- Keyboard fan profile controls
 hl.bind("XF86Launch4", hl.dsp.exec_cmd("~/dotfiles/scripts/profile_switch.sh"))
 
--- hyprwhspr - Toggle speech-to-text
-hl.bind(
-    mainMod .. " + ALT + D",
-    hl.dsp.exec_cmd("hyprwhspr record toggle"),
-    { description = "Speech-to-text" }
-)
-
 -- HyprEmoji (bind previously sourced from ~/.config/hypremoji/hypremoji.conf)
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("hypremoji"))
 
@@ -102,4 +95,3 @@ pcall(function()
     hl.bind(mainMod .. " + Escape", hl.plugin.hymission.close)
 end)
 ]]
-

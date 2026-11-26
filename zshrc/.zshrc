@@ -165,6 +165,7 @@ alias cd='z'
 alias grep="rg"
 alias cb="cliboard"
 eval "$(zoxide init zsh)"
+alias ssh="kitty +kitten ssh"
 
 # SonarScanner
 export PATH="/opt/sonar-scanner/bin:$PATH"

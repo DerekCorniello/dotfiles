@@ -29,8 +29,11 @@ vim.keymap.set("n", "<leader>yy", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>p<leader>", [["+p]])
 vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]])
 
--- format whole file
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+-- format whole file (leader ff)
+vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format)
+
+-- diagnostic (global, works outside LSP attach)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic float" })
 
 -- git keybinds
 vim.keymap.set("n", "<leader>G", vim.cmd.Git);

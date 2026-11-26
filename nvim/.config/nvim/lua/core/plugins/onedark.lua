@@ -6,6 +6,6 @@ require('onedark').setup {
     },
     diagnostics = {
         background = false,
-    }
+    },
 }
 require('onedark').load()

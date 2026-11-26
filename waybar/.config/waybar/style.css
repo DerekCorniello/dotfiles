@@ -1,10 +1,4 @@
-@import "/usr/lib/hyprwhspr/config/waybar/hyprwhspr-style.css";
 @import "mocha.css";
-
-#custom-hyprwhspr {
-  margin: 2px 6px;
-  font-size: 16px;
-}
 
 * {
     font-family: "CodeNewRoman Nerd Font Mono";
@@ -120,8 +114,7 @@ button {
 #network,
 #mode,
 #scratchpad,
-#custom-hyprpicker,
-#custom-hyprwhspr {
+#custom-hyprpicker {
   margin: 2px 6px;
 }
 
@@ -213,28 +206,4 @@ button {
     color: #f38ba8;
     border-bottom: 2px solid #f38ba8;
     padding: 0 2px;
-}
-
-#custom-hyprwhspr,
-#custom-hyprwhspr.ready,
-#custom-hyprwhspr.stopped,
-#custom-hyprwhspr.error,
-#custom-hyprwhspr.unloaded {
-    color: #89dceb;
-    border-bottom: 2px solid #89dceb;
-    font-size: 16px;
-    padding: 0 2px;
-}
-
-/* Recording stands out so you can tell at a glance that it's live.
-   (The color is driven here via CSS now that the module's format no longer
-   hard-codes a foreground color.) */
-#custom-hyprwhspr.recording {
-    color: #E75143;
-    border-bottom: 2px solid #E75143;
-    font-size: 16px;
-}
-
-#custom-hyprwhspr:hover {
-    opacity: 1;
 }

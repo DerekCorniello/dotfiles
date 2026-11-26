@@ -11,7 +11,6 @@
   "modules-right": [
     "custom/pacman",
     "custom/hyprpicker",
-    "custom/hyprwhspr",
     "network",
     "bluetooth",
     "custom/swaync",
@@ -84,13 +83,13 @@
     "tooltip-format-enumerate-connected-battery": "{device_alias} ({device_address}) - {device_battery_percentage}%",
     "on-click": "blueman-manager"
   },
-    "custom/pacman": {
-        "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
-        "exec": "~/.config/waybar/scripts/pacman-count.sh",
-        "on-click": "~/.config/waybar/scripts/pacman-update.sh",
-        "signal": 8,
-        "tooltip": false
-    },
+  "custom/pacman": {
+    "format": "<span size='200%' rise='-6000' foreground='#fab387'>\udb80\udd62</span> {}",
+    "exec": "~/.config/waybar/scripts/pacman-count.sh",
+    "on-click": "~/.config/waybar/scripts/pacman-update.sh",
+    "signal": 8,
+    "tooltip": false
+  },
   "pulseaudio": {
     "format": "<span size='200%' rise='-6000'>{icon}</span> {volume}%",
     "format-muted": "<span size='200%' rise='-6000'>\uf466</span>",
@@ -116,25 +115,11 @@
     "format": "{name}",
     "on-click": "activate"
   },
-
   "custom/hyprpicker": {
-    "format": "<span size='200%' rise='-6000' foreground='#f38ba8'>⌖</span>",
+    "format": "<span size='200%' rise='-6000' foreground='#f38ba8'>\u2316</span>",
     "on-click": "hyprpicker -a",
     "tooltip": false
   },
-
-  "custom/hyprwhspr": {
-    "format": "<span size='185%' rise='-6000'>{}</span>",
-    "exec": "~/.config/hyprwhspr/hyprwhspr-tray.sh status",
-    "interval": 2,
-    "signal": 9,
-    "return-type": "json",
-    "exec-on-event": true,
-    "on-click": "hyprwhspr record toggle",
-    "on-click-right": "~/.config/hyprwhspr/hyprwhspr-tray.sh restart",
-    "tooltip": false
-  },
-
   "custom/swaync": {
     "format": "<span size='150%' rise='-6000' foreground='#cba6f7'>\uf0f3</span><span rise='-4000'> {}</span>",
     "exec": "~/.config/waybar/scripts/swaync.sh",

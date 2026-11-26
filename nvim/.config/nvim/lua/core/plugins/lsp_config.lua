@@ -22,10 +22,10 @@ local on_attach = function(_, bufnr)
 
     keymap('n', 'gD', vim.lsp.buf.declaration, bufopts)
     keymap('n', 'gd', vim.lsp.buf.definition, bufopts)
-    keymap('n', 'K', vim.lsp.buf.hover, bufopts)
+    keymap('n', '<C-k>', vim.lsp.buf.hover, bufopts)
     keymap('n', 'gi', vim.lsp.buf.implementation, bufopts)
     keymap('n', 'gr', vim.lsp.buf.references, bufopts)
-    keymap('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    keymap('n', '<leader>k', vim.lsp.buf.signature_help, bufopts)
     keymap('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     keymap('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     keymap('n', '<space>f', function() require("conform").format({ async = true, lsp_format = "fallback" }) end, bufopts)
@@ -39,6 +39,9 @@ local on_attach = function(_, bufnr)
     keymap('n', ']d', function()
         vim.diagnostic.jump({ count = 1 })
     end, bufopts)
+    keymap('n', '<leader>d', function()
+        vim.diagnostic.open_float({ scope = 'line' })
+    end, vim.tbl_extend('force', bufopts, { desc = 'Show line diagnostic' }))
     keymap('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 end
 
@@ -58,6 +61,13 @@ local function configure(name, extra)
     vim.lsp.config(name, opts)
     vim.lsp.enable(name)
 end
+
+-- Use the same navigation, diagnostics, and completion setup for Mux.
+configure("mux", {
+    cmd = { "/home/derekcorn/code/mux/mux-compiler/target/debug/mux", "lsp" },
+    filetypes = { "mux" },
+    root_markers = { "mux-project.json", ".git" },
+})
 
 -- lua_ls: manual config (overrides bundled defaults)
 configure("lua_ls", {
